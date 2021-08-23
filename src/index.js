@@ -24,28 +24,28 @@ const main = () => {
   //각 함수들은 파일 만들어서 임포트해서 사용하기
 
   window.addEventListener("load", () => {
-    console.log(imgSrcArr);
+    // console.log(imgSrcArr);
     setLayout(sceneInfo, layoutData); //씬 별로 스크롤 크기 저장
     setCanvasLayout(canvasData);
     currentSceneCheck(sceneInfo, layoutData);
     playAnimation(sceneInfo, layoutData);
-    drawBackgroundCanvas(canvasData, layoutData);
+    drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
   window.addEventListener("resize", () => {
     setLayout(sceneInfo, layoutData); //씬 별로 스크롤 크기 저장
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크})
-    drawBackgroundCanvas(canvasData, layoutData);
+    drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
   window.addEventListener("scroll", () => {
     layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크
     playAnimation(sceneInfo, layoutData);
-    drawBackgroundCanvas(canvasData, layoutData);
+    drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
 };
 
 setImgToCanvas(canvasData, imgSrcArr);
-setCanvasLayout(canvasData, imgSrcArr);
+setCanvasLayout(canvasData);
 // setLayout(sceneInfo, layoutData);
 // drawBackgroundCanvas(canvasData, layoutData);
 main();

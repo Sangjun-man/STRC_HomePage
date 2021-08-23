@@ -26,7 +26,6 @@ export const currentSceneCheck = (sceneInfo, layoutData) => {
   for (let i in sceneInfo) {
     // 씬 갯수만큼 for문 돌릴건데
     nowSceneHeight += sceneInfo[i].scrollHeight; //현재 씬 높이에 각 씬의 scrollheight 를 더해줄것
-
     if (nowSceneHeight > layoutData.yoffset) {
       //근데 그 높이가 현재 스크롤 위치보다 크면 현재 씬에 위치해있는것이므로
 
@@ -44,6 +43,7 @@ export const currentSceneCheck = (sceneInfo, layoutData) => {
 };
 
 export const calcCssValues = (sceneInfo, layoutData, values) => {
+  //
   let rv;
 
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
