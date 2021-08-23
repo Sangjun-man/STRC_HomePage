@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useRef } from "react";
+import "./App.css";
+import { sceneInfo } from "./style/data";
+import { selectQuery, setLayout, wholeSectionLayout } from "./style/scroll";
 
 function App() {
+  // useEffect(() => {
+  //   console.log("asdf");
+  //   wholeSectionLayout(sceneInfo);
+  //   selectQuery(sceneInfo);
+  //   setLayout(sceneInfo, refs);
+
+  //   console.log(sceneInfo);
+  //   console.log(refs);
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>컴포넌트 테스트</div>
+    </>
   );
 }
 
