@@ -25,12 +25,12 @@ export const sceneInfo = [
     },
     values: {
       sceneFirst: [
-        [0, 1, { start: 0, end: 0.25 }],
-        [1, 0, { start: 0.25, end: 0.5 }],
+        [0, 0, { start: 0, end: 0.25 }],
+        [0, 0, { start: 0.25, end: 0.5 }],
       ], //초기값, 나중값, 시작비율
       sceneNext: [
-        [0, 1, { start: 0.5, end: 0.75 }],
-        [1, 0, { start: 0.75, end: 1 }],
+        [0, 0, { start: 0.5, end: 0.75 }],
+        [0, 0, { start: 0.75, end: 1 }],
       ],
       rectMove: { start: 0, end: 0.2 },
       blendValue: { direction: "column", type: "up", start: 0.75, end: 1 },
@@ -61,9 +61,11 @@ export const sceneInfo = [
     objs: {
       scene: document.querySelector("#scene-2"),
       gradient: document.querySelector("#about-gradient"),
+      leftLine: document.querySelector("#about-left-line"),
     },
     values: {
       gradient: [0, 1, { start: 0.1, end: 0.3 }],
+      leftLine: [0, 1, { start: 0.3, end: 0.4 }],
     },
   },
   {

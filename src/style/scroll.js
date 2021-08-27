@@ -75,6 +75,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
     rv = values[0] + scrollRatio * (values[1] - values[0]); //전체 씬의 스크롤ratio를 반영해서 적용,
   }
   // console.log(rv);
+  //rv는 0~1 사이의 값을 리턴
   return rv;
 };
 

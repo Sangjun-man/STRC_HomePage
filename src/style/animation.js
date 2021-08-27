@@ -54,6 +54,12 @@ export const playAnimation = (sceneInfo, layoutData) => {
         ) *
           50
       }%`;
+
+      objs.leftLine.style.opacity = calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.leftLine
+      );
       break;
     case 3:
       return console.log(3);

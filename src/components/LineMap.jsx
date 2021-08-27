@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import STRCLineMap from "../asset/svg/STRC_LineMap.svg";
 
-const StyleLineMap = styled.div`
+const StyledLineMap = styled.div`
   position: fixed;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
@@ -16,8 +16,6 @@ const StyleLineMap = styled.div`
     return props.left;
   }}px;
   z-index: 5;
-  align-items: center;
-  justify-contents: center;
 `;
 
 const StyledMapMenu = styled.a`
@@ -68,7 +66,10 @@ const LineMap = () => {
     left: initLineMap.left * (innerWidth / 1920),
     top: initLineMap.top * (innerHeight / 1080),
     width: initLineMap.width * (innerWidth / 1920),
-    height: initLineMap.width * (innerWidth / 1920) * 0.606,
+    height:
+      initLineMap.width *
+      (innerWidth / 1920) *
+      (initLineMap.height / initLineMap.width),
   }; //전체 브라우저 크기에서 width와 height 정해짐
 
   const MenuData = {
@@ -115,7 +116,7 @@ const LineMap = () => {
 
   return (
     <>
-      <StyleLineMap
+      <StyledLineMap
         top={LineMap.top}
         left={LineMap.left}
         width={LineMap.width}
@@ -162,7 +163,7 @@ const LineMap = () => {
           Contact
         </LineMapMenu>
         <img src={STRCLineMap}></img>
-      </StyleLineMap>
+      </StyledLineMap>
     </>
   );
 };
