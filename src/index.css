@@ -21,8 +21,10 @@ code {
 
 .fixed-contents {
   position: fixed;
-  display: none;
+  width: 100%;
+  height: 100%;
 }
+
 .section {
   border: 1px solid black;
   box-sizing: border-box;
@@ -33,14 +35,18 @@ code {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-size: 10vw;
+  font-size: 20vw;
+  color: white;
 }
 #scene-0-first {
   position: fixed;
+  z-index: -5;
 }
 #scene-0-next {
   position: fixed;
   font-size: 30vw;
+  color: white;
+  z-index: -5;
 }
 
 #background-canvas {
@@ -48,4 +54,7 @@ code {
   top: 0;
   left: 0;
   z-index: -10;
+}
+#line-map {
+  opacity: 1;
 }

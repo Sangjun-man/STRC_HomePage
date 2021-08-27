@@ -52,24 +52,26 @@ export const setCanvasTrans = (canvasData) => {
   ];
 
   if (deviceRatio > imgRatio) {
-    console.log("세로");
+    // console.log("세로");
     canvasData.canvas.style.transform = `scale(${
       heightRatio * 1.01
     }) translate(${colTransX}px, ${colTransY}px)`;
   } else {
-    console.log("가로");
-    canvasData.canvas.style.transform = ` scale(${
+    // console.log("가로");
+    // console.log(verTransX, verTransY);
+    canvasData.canvas.style.transform = `scale(${
       widthRatio * 1.01
-    })  translate(${verTransX}px, ${verTransY} px) `;
+    })  translate(${verTransX}px, ${verTransY}px)`;
   }
 };
 
 //배경화면은 한번만 그려주고, currentScene이 바뀔때마다 그려준다, ==>  블랜딩 처리하면 계속 그려줘야 할것같다
 // 이미지 파일을 캔버스에 미리 그려두고,  애니메이션 시에는 불러와서 스케일 조정만 해주기.
 export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
-  console.log(canvasData, layoutData);
+  // console.log(canvasData, layoutData);
+  // let rv;
   switch (layoutData.currentScene) {
-    case 0:
+    case 0: {
       let rv = calcCanvasValues(
         canvasData.imgs[0],
         sceneInfo,
@@ -89,7 +91,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       } = rv;
       let { image: prevImage, height, width } = canvasData.imgs[0];
       let { image: nextImage } = canvasData.imgs[1];
-      console.log(rv);
+
       canvasData.ctx.drawImage(
         prevImage,
         sx,
@@ -100,6 +102,17 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dy,
         dWidth,
         dHeight
+      );
+
+      // drawCanvasColRect(canvasData, 200, 100);
+      drawCanvasColRect(canvasData, width * 0.1, width / 10);
+      drawCanvasColRect(canvasData, width * 0.6, width / 10);
+      drawCanvasColRect(canvasData, width * 0.8, width / 5);
+      drawCanvasColRect(
+        canvasData,
+        width *
+          calcScollRatio(sceneInfo, layoutData, sceneInfo[0].values.rectMove),
+        width
       );
       canvasData.ctx.drawImage(
         nextImage,
@@ -114,17 +127,52 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       );
       setCanvasTrans(canvasData);
       break;
-    case 1:
-      const secondCanvas = canvasData.imgs[1];
+    }
+    case 1: {
+      let rv = calcCanvasValues(
+        canvasData.imgs[1],
+        sceneInfo,
+        layoutData,
+        sceneInfo[1].values.blendValue
+      );
+      let { image: prevImage, height, width } = canvasData.imgs[1];
+      let { image: nextImage } = canvasData.imgs[2];
+      let {
+        sx,
+        sy,
+        sWidth,
+        sHeight,
+        dx,
+        dy,
+        dWidth,
+        dHeight,
+        partScrollRatio,
+      } = rv;
       canvasData.ctx.drawImage(
-        secondCanvas.image,
-        0,
-        0,
-        secondCanvas.width,
-        secondCanvas.height
+        prevImage,
+        sx,
+        sy,
+        sWidth,
+        sHeight,
+        dx,
+        dy,
+        dWidth,
+        dHeight
+      );
+      canvasData.ctx.drawImage(
+        nextImage,
+        sx,
+        sy,
+        partScrollRatio * width,
+        sHeight,
+        partScrollRatio * width,
+        dy,
+        partScrollRatio * width,
+        dHeight
       );
       setCanvasTrans(canvasData);
       break;
+    }
     case 2:
       break;
     case 3:
@@ -140,6 +188,18 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
 // 인터랙션에서 그려지는 것들은 따로 그려주기
 
 // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) (en-US)
+
+const calcScollRatio = (sceneInfo, layoutData, values) => {
+  let yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
+  let scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
+  let partScrollStart = values.start * scrollHeight; //시작스크롤위치
+  let partScrollEnd = values.end * scrollHeight; // 끝나는스크롤위치
+  let partYoffset = yOfCurrent - partScrollStart;
+  let partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
+  let partScrollRatio = partYoffset / partScrollHeight;
+
+  return partScrollRatio;
+};
 
 export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
   // console.log(imageData, sceneInfo, layoutData, values);
@@ -158,16 +218,11 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
   };
   let yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   let scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
-  // let pageHeight = window.innerHeight;
-  // let pageWidth = window.innerWidth; //디바이스 좌우 길이
-  // let scrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
   let partScrollStart = values.start * scrollHeight; //시작스크롤위치
   let partScrollEnd = values.end * scrollHeight; // 끝나는스크롤위치
   let partYoffset = yOfCurrent - partScrollStart;
   let partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
   let partScrollRatio = partYoffset / partScrollHeight;
-
-  // console.log(yOfCurrent, partScrollHeight, partScrollRatio);
 
   if (
     yOfCurrent >= partScrollStart && //시작점을 지나고
@@ -205,31 +260,35 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
       }
       case "row": {
         switch (values.type) {
-          case "out": {
+          case "left": {
+            let rv = {
+              sx: 0,
+              sy: 0,
+              sWidth: (1 - partScrollRatio) * width,
+              sHeight: height,
+              dx: 0,
+              dy: 0,
+              dWidth: (1 - partScrollRatio) * width,
+              dHeight: height,
+              partScrollRatio: partScrollRatio,
+            };
+
             return rv;
-            //   = {
-            //   sx,
-            //   sy,
-            //   sWidth,
-            //   sHeight,
-            //   dx,
-            //   dy,
-            //   dWidth,
-            //   dHeight,
-            // }
           } //전체 씬의 스크롤ratio를 반영해서 적용,
-          case "in": {
+          case "right": {
+            let rv = {
+              sx: partScrollRatio * width,
+              sy: 0,
+              sWidth: (1 - partScrollRatio) * width,
+              sHeight: height,
+              dx: partScrollRatio * width,
+              dy: 0,
+              dWidth: (1 - partScrollRatio) * width,
+              dHeight: height,
+              partScrollRatio: partScrollRatio,
+            };
+
             return rv;
-            //   = {
-            //   sx,
-            //   sy,
-            //   sWidth,
-            //   sHeight,
-            //   dx,
-            //   dy,
-            //   dWidth,
-            //   dHeight,
-            // }
           }
         }
       }
@@ -241,4 +300,13 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
     //end 지났으면
     return rv;
   }
+};
+
+export const drawCanvasColRect = (canvasData, dx, dWidth, dheight) => {
+  let { ctx } = canvasData;
+  let { height } = canvasData.imgs[0];
+  let color = "white";
+
+  ctx.fillStyle = color;
+  ctx.fillRect(dx, 0, dWidth, height);
 };

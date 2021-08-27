@@ -15,7 +15,7 @@ export const canvasData = {
 export const sceneInfo = [
   {
     type: "0",
-    heightNum: 5,
+    heightNum: 8,
     scrollHeight: 0,
     objs: {
       canvas: document.getElementById("#background-canvas"),
@@ -32,6 +32,7 @@ export const sceneInfo = [
         [0, 1, { start: 0.5, end: 0.75 }],
         [1, 0, { start: 0.75, end: 1 }],
       ],
+      rectMove: { start: 0, end: 0.2 },
       blendValue: { direction: "column", type: "up", start: 0.75, end: 1 },
 
       //drawCanvas에서 같이 그려주면 됨,
@@ -39,16 +40,18 @@ export const sceneInfo = [
   },
   {
     type: "1",
-    heightNum: 2,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-1"),
     },
-    values: {},
+    values: {
+      blendValue: { direction: "row", type: "right", start: 0.5, end: 1 },
+    },
   },
   {
     type: "2",
-    heightNum: 2,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-2"),

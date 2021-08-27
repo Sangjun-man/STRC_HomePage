@@ -1,7 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import "./App";
 import { currentSceneCheck, setLayout } from "./style/scroll";
 import { layoutData, sceneInfo, canvasData } from "./style/data";
 import { playAnimation } from "./style/animation";
@@ -12,12 +10,6 @@ import {
   setImgToCanvas,
 } from "./style/canvas";
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById("root")
-
 const main = () => {
   //정의된 함수들 -> 임포트 해서 쓸수 있나? 있다
   //여기 메인 함수는 asddEventListener 모아두기
@@ -25,11 +17,19 @@ const main = () => {
 
   window.addEventListener("load", () => {
     // console.log(imgSrcArr);
+
     setLayout(sceneInfo, layoutData); //씬 별로 스크롤 크기 저장
     setCanvasLayout(canvasData);
     currentSceneCheck(sceneInfo, layoutData);
     playAnimation(sceneInfo, layoutData);
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
+    setTimeout(
+      window.scrollTo({
+        top: sceneInfo[layoutData.currentScene].scrollHeight / 2,
+        behavior: "smooth",
+      }),
+      2000
+    );
   });
   window.addEventListener("resize", () => {
     setLayout(sceneInfo, layoutData); //씬 별로 스크롤 크기 저장
@@ -46,6 +46,4 @@ const main = () => {
 
 setImgToCanvas(canvasData, imgSrcArr);
 setCanvasLayout(canvasData);
-// setLayout(sceneInfo, layoutData);
-// drawBackgroundCanvas(canvasData, layoutData);
 main();
