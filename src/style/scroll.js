@@ -49,7 +49,6 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
   const scrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
-
   if (values.length === 3) {
     const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
     const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
@@ -75,7 +74,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
 
     rv = values[0] + scrollRatio * (values[1] - values[0]); //전체 씬의 스크롤ratio를 반영해서 적용,
   }
-
+  // console.log(rv);
   return rv;
 };
 

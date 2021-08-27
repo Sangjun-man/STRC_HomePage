@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import STRCLogo from "../asset/svg/STRCLogo.svg";
 const StyledTopLogo = styled.div`
   position: fixed;
@@ -8,12 +8,6 @@ const StyledTopLogo = styled.div`
   min-width: 100px;
   z-index: 1000;
   width: 10vw;
-
-  ${css`
-  div:hover {
-    background-color: powderblue;
-transition: background - color 0.5s;`}
-  }
 `;
 
 const TopLogo = () => {

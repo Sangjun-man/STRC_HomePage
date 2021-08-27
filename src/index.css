@@ -58,3 +58,19 @@ code {
 #line-map {
   opacity: 1;
 }
+
+#about-gradient {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  top: 0%;
+  left: -50%;
+  /* background-color: linear-gradient(to right, purple 0, transparent 25%);
+   */
+  background: linear-gradient(
+    to right,
+    rgba(30, 19, 38, 1) 25%,
+    transparent 100%
+  );
+  z-index: 7;
+}

@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import STRCLineMap from "../asset/svg/STRCLineMap.svg";
+import STRCLineMap from "../asset/svg/STRC_LineMap.svg";
 
 const StyleLineMap = styled.div`
   position: fixed;
@@ -21,9 +21,8 @@ const StyleLineMap = styled.div`
 `;
 
 const StyledMapMenu = styled.a`
-  ${(props) => console.log(props)}
   font-size: ${(props) => {
-    return props.px;
+    return props.fontSize;
   }}px;
   color: white;
   position: absolute;
@@ -32,12 +31,12 @@ const StyledMapMenu = styled.a`
 `;
 
 //styled-component 라인 지도
-const LineMapMenu = ({ children, top, left, px, scrollTo }) => {
+const LineMapMenu = ({ children, top, left, fontSize, scrollTo }) => {
   return (
     <StyledMapMenu
       top={top}
       left={left}
-      px={px}
+      fontSize={fontSize}
       onClick={() => window.scrollTo(scrollTo)}
     >
       {children}
@@ -60,16 +59,16 @@ const LineMap = () => {
   }, []);
 
   const initLineMap = {
-    left: 331.32,
-    top: 395.32,
-    width: 1152,
-    height: 494.75,
+    left: 340.1066,
+    top: 251,
+    width: 1218.4324,
+    height: 738.4213,
   };
   const LineMap = {
-    left: (331.32 / 1920) * innerWidth,
-    top: (395.32 / 1080) * innerHeight,
-    width: innerWidth * 0.6,
-    height: innerWidth * 0.6 * 0.43,
+    left: initLineMap.left * (innerWidth / 1920),
+    top: initLineMap.top * (innerHeight / 1080),
+    width: initLineMap.width * (innerWidth / 1920),
+    height: initLineMap.width * (innerWidth / 1920) * 0.606,
   }; //전체 브라우저 크기에서 width와 height 정해짐
 
   const MenuData = {
@@ -78,35 +77,37 @@ const LineMap = () => {
     //좌표 기준을 라인맵 시작점으로 맞추기 (471.65 - 331.32)
     //각각의 글씨 위치
     About: {
-      left: ((471.65 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((362.87 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 44,
+      left: ((666.8428 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((305.1909 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      fontSize: 25,
     },
-    Activity: {
-      left: ((320 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((820 - initLineMap.top) / initLineMap.height) * LineMap.height,
+    Start: {
+      left:
+        ((1250.3916 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((307.4556 - initLineMap.top) / initLineMap.height) * LineMap.height,
       fontSize: 44,
     },
     Community: {
-      left: ((1480 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((675 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 44,
+      left: ((904.5049 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((951.394 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      fontSize: 25,
     },
     Gallery: {
-      left: ((1160 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((363.22 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 44,
+      left: ((370.9561 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((699.3384 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      fontSize: 25,
     },
     Contact: {
-      left: ((950 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((790 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 44,
+      left:
+        ((1431.5244 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((663.2041 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      fontSize: 25,
     },
   };
 
-  const [About, Activity, Community, Contact, Gallery] = [
+  const [About, Start, Community, Contact, Gallery] = [
     MenuData.About,
-    MenuData.Activity,
+    MenuData.Start,
     MenuData.Community,
     MenuData.Contact,
     MenuData.Gallery,
@@ -123,28 +124,41 @@ const LineMap = () => {
         <LineMapMenu
           top={About.top}
           left={About.left}
-          px={About.px}
+          fontSize={About.fontSize}
           scrollTo={{
             top: 0,
             behavior: "smooth",
           }}
         >
+          {" "}
           About
         </LineMapMenu>
-        <LineMapMenu top={Activity.top} left={Activity.left} px={Activity.px}>
-          Activity
+        <LineMapMenu
+          top={Start.top}
+          left={Start.left}
+          fontSize={Start.fontSize}
+        >
+          Start
         </LineMapMenu>
         <LineMapMenu
           top={Community.top}
           left={Community.left}
-          px={Community.px}
+          fontSize={Community.fontSize}
         >
           Community
         </LineMapMenu>
-        <LineMapMenu top={Gallery.top} left={Gallery.left} px={Gallery.px}>
+        <LineMapMenu
+          top={Gallery.top}
+          left={Gallery.left}
+          fontSize={Gallery.fontSize}
+        >
           Gallery
         </LineMapMenu>
-        <LineMapMenu top={Contact.top} left={Contact.left} px={Contact.px}>
+        <LineMapMenu
+          top={Contact.top}
+          left={Contact.left}
+          fontSize={Contact.fontSize}
+        >
           Contact
         </LineMapMenu>
         <img src={STRCLineMap}></img>

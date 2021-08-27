@@ -31,10 +31,30 @@ export const playAnimation = (sceneInfo, layoutData) => {
       );
       break;
     case 1:
-      return console.log(1);
-    case 2:
-      return console.log(2);
+      // console.log(objs.lineMap.style);
+      objs.lineMap.style.opacity = calcCssValues(
+        sceneInfo,
+        layoutData,
+        scrollRatio <= values.lineMapOpacity[0][2].end
+          ? values.lineMapOpacity[0]
+          : values.lineMapOpacity[1]
+      );
 
+      break;
+    case 2:
+      objs.gradient.style.left = `${
+        -50 +
+        calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.gradient
+          // scrollRatio <= values.lineMapOpacity[0][2].end
+          //   ? values.lineMapOpacity[0]
+          //   : values.lineMapOpacity[1]}
+        ) *
+          50
+      }%`;
+      break;
     case 3:
       return console.log(3);
 

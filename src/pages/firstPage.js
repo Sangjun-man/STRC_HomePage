@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React, { useRef } from "react";
 import styled, { css } from "styled-components";
-import STRCLogo from "../asset/svg/STRCLogo.svg";
+import STRCLogo from "../asset/svg/STRC_Logo.svg";
 import STRC_FirstPageLogo from "../asset/svg/STRC_FirstPageLogo.svg";
 
 export const FirstPageSTRCLogo = () => {

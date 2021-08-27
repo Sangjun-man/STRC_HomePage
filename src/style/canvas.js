@@ -105,9 +105,10 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       );
 
       // drawCanvasColRect(canvasData, 200, 100);
-      drawCanvasColRect(canvasData, width * 0.1, width / 10);
-      drawCanvasColRect(canvasData, width * 0.6, width / 10);
-      drawCanvasColRect(canvasData, width * 0.8, width / 5);
+      drawCanvasColRect(canvasData, width * 0, width / 12);
+      drawCanvasColRect(canvasData, width * 0.3, width / 20);
+      drawCanvasColRect(canvasData, width * 0.6, width / 20);
+      drawCanvasColRect(canvasData, width * 0.95, width / 10);
       drawCanvasColRect(
         canvasData,
         width *

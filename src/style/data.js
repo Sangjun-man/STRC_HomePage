@@ -44,9 +44,14 @@ export const sceneInfo = [
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-1"),
+      lineMap: document.querySelector("#line-map"),
     },
     values: {
       blendValue: { direction: "row", type: "right", start: 0.5, end: 1 },
+      lineMapOpacity: [
+        [0, 1, { start: 0, end: 0.1 }],
+        [1, 0, { start: 0.45, end: 0.5 }],
+      ],
     },
   },
   {
@@ -55,8 +60,11 @@ export const sceneInfo = [
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-2"),
+      gradient: document.querySelector("#about-gradient"),
     },
-    values: {},
+    values: {
+      gradient: [0, 1, { start: 0.1, end: 0.3 }],
+    },
   },
   {
     type: "3",
