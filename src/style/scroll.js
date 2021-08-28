@@ -22,7 +22,7 @@ export const setLayout = (sceneInfo, layoutData) => {
 export const currentSceneCheck = (sceneInfo, layoutData) => {
   // 현재 씬넘버와 이전씬까지의 스크롤 높이를 측정해보자
   let nowSceneHeight = 0; //현재 씬까지의 높이를 먼저 0으로 세팅
-
+  let currentScene;
   for (let i in sceneInfo) {
     // 씬 갯수만큼 for문 돌릴건데
     nowSceneHeight += sceneInfo[i].scrollHeight; //현재 씬 높이에 각 씬의 scrollheight 를 더해줄것
@@ -35,11 +35,15 @@ export const currentSceneCheck = (sceneInfo, layoutData) => {
       //   layoutData.sceneChange.next = Number(i);
       //  배경을 바뀔때 한번만 그리려고 했는데 블랜딩 하게될테니 그동안은 스크롤단위로 꼐속 그려줘야 할듯.
       // }
+      currentScene = i;
       layoutData.currentScene = Number(i); // 씬넘버 저장
       layoutData.prevScrollHeight = nowSceneHeight - sceneInfo[i].scrollHeight; // 현재 씬높이만큼 빼서 prev스크롤높이에 저장
+
       break;
     }
   }
+  // console.log(layoutData);
+  document.body.setAttribute("id", `show-scene-${currentScene}`);
 };
 
 export const calcCssValues = (sceneInfo, layoutData, values) => {

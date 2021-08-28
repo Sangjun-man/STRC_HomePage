@@ -15,6 +15,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
   switch (layoutData.currentScene) {
     case 0:
+      objs.scene.style.display = "block";
       objs.sceneFirst.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
@@ -32,6 +33,8 @@ export const playAnimation = (sceneInfo, layoutData) => {
       break;
     case 1:
       // console.log(objs.lineMap.style);
+      objs.scene.style.display = "block";
+
       objs.lineMap.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
@@ -42,6 +45,8 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
       break;
     case 2:
+      objs.scene.style.display = "block";
+
       objs.gradient.style.left = `${
         -50 +
         calcCssValues(

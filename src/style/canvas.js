@@ -72,6 +72,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
   // let rv;
   switch (layoutData.currentScene) {
     case 0: {
+      sceneInfo[0].objs.scene.style.display = "block";
       let rv = calcCanvasValues(
         canvasData.imgs[0],
         sceneInfo,
