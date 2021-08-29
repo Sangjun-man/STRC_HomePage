@@ -47,7 +47,7 @@ export const sceneInfo = [
       lineMap: document.querySelector("#line-map"),
     },
     values: {
-      blendValue: { direction: "row", type: "right", start: 0.5, end: 1 },
+      blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
       lineMapOpacity: [
         [0, 1, { start: 0, end: 0.1 }],
         [1, 0, { start: 0.45, end: 0.5 }],
@@ -70,12 +70,14 @@ export const sceneInfo = [
   },
   {
     type: "3",
-    heightNum: 2,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-3"),
     },
-    values: {},
+    values: {
+      linearBackground: ["#E8E8E8", "#15172C", { start: 0.7, end: 1 }],
+    },
   },
   {
     type: "4",

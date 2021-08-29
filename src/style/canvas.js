@@ -70,15 +70,26 @@ export const setCanvasTrans = (canvasData) => {
 export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
   // console.log(canvasData, layoutData);
   // let rv;
+  const currentScene = layoutData.currentScene;
+  const objs = sceneInfo[currentScene].objs;
+  const values = sceneInfo[currentScene].values;
+
+  // const [imgs, nextImgs] = [
+  //   canvasData.imgs[currentScene],
+  //   canvasData.imgs[currentScene + 1],
+  // ];
+  // let { image: prevImage, height, width } = imgs;
+  // let { image: nextImage } = nextImgs;
+
   switch (layoutData.currentScene) {
     case 0: {
-      sceneInfo[0].objs.scene.style.display = "block";
-      let rv = calcCanvasValues(
-        canvasData.imgs[0],
-        sceneInfo,
-        layoutData,
-        sceneInfo[0].values.blendValue
-      );
+      const [imgs, nextImgs] = [
+        canvasData.imgs[currentScene],
+        canvasData.imgs[currentScene + 1],
+      ];
+      let { image: prevImage, height, width } = imgs;
+      let { image: nextImage } = nextImgs;
+      let rv = calcCanvasValues(imgs, sceneInfo, layoutData, values.blendValue);
       let {
         sx,
         sy,
@@ -90,8 +101,6 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dHeight,
         partScrollRatio,
       } = rv;
-      let { image: prevImage, height, width } = canvasData.imgs[0];
-      let { image: nextImage } = canvasData.imgs[1];
 
       canvasData.ctx.drawImage(
         prevImage,
@@ -105,15 +114,14 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dHeight
       );
 
-      // drawCanvasColRect(canvasData, 200, 100);
-      drawCanvasColRect(canvasData, width * 0, width / 12);
-      drawCanvasColRect(canvasData, width * 0.3, width / 20);
-      drawCanvasColRect(canvasData, width * 0.6, width / 20);
-      drawCanvasColRect(canvasData, width * 0.95, width / 10);
-      drawCanvasColRect(
+      //canvasData , x위치, 넓이
+      drawColRect(canvasData, width * 0, width / 12);
+      drawColRect(canvasData, width * 0.3, width / 20);
+      drawColRect(canvasData, width * 0.6, width / 20);
+      drawColRect(canvasData, width * 0.95, width / 10);
+      drawColRect(
         canvasData,
-        width *
-          calcScollRatio(sceneInfo, layoutData, sceneInfo[0].values.rectMove),
+        width * calcScrollRatio(sceneInfo, layoutData, values.rectMove),
         width
       );
       canvasData.ctx.drawImage(
@@ -127,18 +135,18 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dWidth,
         partScrollRatio * height
       );
+      //블랜딩 되는 다음 이미지
       setCanvasTrans(canvasData);
       break;
     }
     case 1: {
-      let rv = calcCanvasValues(
-        canvasData.imgs[1],
-        sceneInfo,
-        layoutData,
-        sceneInfo[1].values.blendValue
-      );
-      let { image: prevImage, height, width } = canvasData.imgs[1];
-      let { image: nextImage } = canvasData.imgs[2];
+      const [imgs, nextImgs] = [
+        canvasData.imgs[currentScene],
+        canvasData.imgs[currentScene + 1],
+      ];
+      let { image: prevImage, height, width } = imgs;
+      let { image: nextImage } = nextImgs;
+      let rv = calcCanvasValues(imgs, sceneInfo, layoutData, values.blendValue);
       let {
         sx,
         sy,
@@ -175,9 +183,16 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       setCanvasTrans(canvasData);
       break;
     }
-    case 2:
+    case 2: {
+      // 헌수형 등짝 추가
       break;
+    }
     case 3:
+      drawLinearBGColor(
+        canvasData,
+        values.linearBackground,
+        calcScrollRatio(sceneInfo, layoutData, values.linearBackground[2])
+      );
       break;
     case 4:
       break;
@@ -191,7 +206,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
 
 // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) (en-US)
 
-const calcScollRatio = (sceneInfo, layoutData, values) => {
+const calcScrollRatio = (sceneInfo, layoutData, values) => {
   let yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   let scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
   let partScrollStart = values.start * scrollHeight; //시작스크롤위치
@@ -200,7 +215,21 @@ const calcScollRatio = (sceneInfo, layoutData, values) => {
   let partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
   let partScrollRatio = partYoffset / partScrollHeight;
 
+  //start ~ end 사이 구간에서의 스크롤 비율 리턴
   return partScrollRatio;
+};
+const sliceRGBA = (colorData) => {
+  //# 붙이는거 안붙이는거 체크
+  const startIndex = colorData.length % 2 == 1 ? 1 : 0;
+  let rgba = [
+    colorData.slice(startIndex, startIndex + 2),
+    colorData.slice(startIndex + 2, startIndex + 4),
+    colorData.slice(startIndex + 4, startIndex + 6),
+    colorData.slice(startIndex + 6, startIndex + 8) || "FF", //a값 없으면 FF로 고정
+  ];
+  return rgba.map((value) => parseInt(`0x${value}`));
+
+  //rgba -> [ r, g ,b ,a ] 10진수로 리턴
 };
 
 export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
@@ -304,11 +333,44 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
   }
 };
 
-export const drawCanvasColRect = (canvasData, dx, dWidth, dheight) => {
+export const drawColRect = (canvasData, dx, dWidth, dheight) => {
   let { ctx } = canvasData;
   let { height } = canvasData.imgs[0];
   let color = "white";
 
   ctx.fillStyle = color;
   ctx.fillRect(dx, 0, dWidth, height);
+};
+
+//배경색깔만 전환 -> drawLinearBGColor(canvasData, [처음색깔,나중색깔,{start , end}] ,스크롤 비율 )
+export const drawLinearBGColor = (canvasData, values, scrollRatio) => {
+  // let drawColor = "#"
+  let prevColor = values[0] || "#FFFFFFFF";
+  let nextColor = values[1] || "#FFFFFFFF";
+  let { ctx } = canvasData;
+  let [width, height] = [canvasData.canvas.width, canvasData.canvas.height];
+
+  //sliceRGBA는  [r,g,b,a] 0~255값  리턴
+
+  let prevRGBA = sliceRGBA(prevColor);
+  let nextRGBA = sliceRGBA(nextColor);
+  let drawColor = "#";
+
+  // console.log(prevColor, nextColor, scrollRatio);
+  // console.log(prevRGBA, nextRGBA);
+  // console.log(scrollRatio);
+
+  if (scrollRatio > 0) {
+    for (let i = 0; i < 4; i++) {
+      let RGBvalue = parseInt(
+        prevRGBA[i] * (1 - scrollRatio) + nextRGBA[i] * scrollRatio
+      );
+
+      console.log(RGBvalue);
+      drawColor += `${RGBvalue.toString(16)}`;
+    }
+    console.log(drawColor);
+  }
+  ctx.fillStyle = drawColor;
+  ctx.fillRect(0, 0, width, height);
 };

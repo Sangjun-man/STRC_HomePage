@@ -80,29 +80,29 @@ const LineMap = () => {
     About: {
       left: ((666.8428 - initLineMap.left) / initLineMap.width) * LineMap.width,
       top: ((305.1909 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 25,
+      fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Start: {
       left:
         ((1250.3916 - initLineMap.left) / initLineMap.width) * LineMap.width,
       top: ((307.4556 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 44,
+      fontSize: (44 / initLineMap.height) * LineMap.height,
     },
     Community: {
       left: ((904.5049 - initLineMap.left) / initLineMap.width) * LineMap.width,
       top: ((951.394 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 25,
+      fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Gallery: {
       left: ((370.9561 - initLineMap.left) / initLineMap.width) * LineMap.width,
       top: ((699.3384 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 25,
+      fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Contact: {
       left:
         ((1431.5244 - initLineMap.left) / initLineMap.width) * LineMap.width,
       top: ((663.2041 - initLineMap.top) / initLineMap.height) * LineMap.height,
-      fontSize: 25,
+      fontSize: (32 / initLineMap.height) * LineMap.height,
     },
   };
 
