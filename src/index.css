@@ -93,7 +93,7 @@ section > div {
   left: 0;
   width: 100vw;
   height: 100vh;
-  border: 1px solid red;
+  background-color: "#15172C";
   box-sizing: border-box;
 }
 #gallery-photo {

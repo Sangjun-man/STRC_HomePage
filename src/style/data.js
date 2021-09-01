@@ -82,19 +82,19 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 2,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
     },
     values: {
       photoData: {},
-      photo0: [0, 1, { start: 0, end: 1 }],
-      photo1: [0, 1, { start: 0, end: 1 }],
-      photo2: [0, 1, { start: 0, end: 1 }],
-      photo3: [0, 1, { start: 0, end: 1 }],
-      photo4: [0, 1, { start: 0, end: 1 }],
-      photo5: [0, 1, { start: 0, end: 1 }],
+      photo0: [0, 1, { start: 0.1, end: 0.3 }],
+      photo1: [0, 1, { start: 0.2, end: 0.4 }],
+      photo2: [0, 1, { start: 0.3, end: 0.5 }],
+      photo3: [0, 1, { start: 0.4, end: 0.6 }],
+      photo4: [0, 1, { start: 0.5, end: 0.7 }],
+      photo5: [0, 1, { start: 0.6, end: 0.8 }],
     },
   },
   {

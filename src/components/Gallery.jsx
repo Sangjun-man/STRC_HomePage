@@ -5,7 +5,6 @@ import { layoutData, sceneInfo } from "../style/data";
 const StyledGalleryContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: aquamarine;
 `;
 //중심점 찾기
 //
@@ -21,15 +20,15 @@ const StyledGalleryPhotoWeb = styled.div`
   height: ${(props) => props.height}px;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
-  background-color: red;
-  background-image: url(${(props) => props.imgs});
+  background-color: ${"#15172C"};
+  background-image: url(${(props) => props.imgSrc});
+  background-size: 108%;
 `;
 // 그냥 props만 전달인데 styled 컴포넌트 쓸 필요가 있나?
-
-const Gallery = (props) => {
+const Gallery = (props, { imgSrcArr }) => {
+  // props로 넘어오는게 바로 넘어오는듯 하다 비구조화할당 하면 한박자 늦게 오느듣ㅅ
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
-
   const gallerySize = {
     startX: ((163 + 26 * 2) * innerWidth) / 1920 + 30,
     width: innerWidth - ((163 + 26 * 2) * innerWidth) / 1920 + 30,
@@ -52,17 +51,15 @@ const Gallery = (props) => {
     radius: gallerySize.width * 0.45 - photosLayoutData.width / 2,
   };
   const photos = [];
-  const photosT = [
-    {
-      id: `photo-0`,
-    },
-  ];
+
   for (let i = 0; i < 6; i++) {
     // 여기에 Objs와 values 넣어주기,
     sceneInfo[4].objs[`photo${i}`] = document.getElementById(`photo-${i}`);
-
+    let image = new Image();
     photos.push({
       id: `photo-${i}`,
+      imgSrc: props.imgSrcArr[i],
+      // props로 넘어오는게 바로 넘어오는듯 하다 비구조화할당 하면 한박자 늦게 오느듣ㅅ
     });
   }
   useEffect(() => {
@@ -93,7 +90,7 @@ const Gallery = (props) => {
             left={basisCoordinates.centerX}
             width={photosLayoutData.width}
             height={photosLayoutData.height}
-            imgs
+            imgSrc={photo.imgSrc}
           ></StyledGalleryPhotoWeb>
         ))}
       </StyledGalleryContainer>

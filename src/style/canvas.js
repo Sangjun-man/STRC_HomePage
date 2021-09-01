@@ -1,6 +1,5 @@
 //이미지 소스, 크기를 데이터에 담아주기
 export const setImgToCanvas = (canvasData, imgSrcArr) => {
-  console.log("image setting");
   for (let imgSrc of imgSrcArr) {
     // console.log(imgSrc);
     let image = new Image();
@@ -88,7 +87,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         canvasData.imgs[currentScene + 1],
       ];
       let { image: prevImage, height, width } = imgs;
-      let { image: nextImage } = nextImgs;
+      let { image: nextImage, height: nextHeight, width: nextWidth } = nextImgs;
       let rv = calcCanvasValues(imgs, sceneInfo, layoutData, values.blendValue);
       let {
         sx,
@@ -101,6 +100,8 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dHeight,
         partScrollRatio,
       } = rv;
+      // let nextrv = calcCanvasValues(nextImgs, sceneInfo, layoutData, values.blendValue);
+      // let { sWidth:nextSwidth, sHeight: nextSheight } = nextrv;
 
       canvasData.ctx.drawImage(
         prevImage,
@@ -127,7 +128,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       canvasData.ctx.drawImage(
         nextImage,
         sx,
-        (1 - partScrollRatio) * height,
+        (1 - partScrollRatio) * nextHeight,
         width,
         partScrollRatio * height,
         dx,
@@ -238,6 +239,9 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
 
       break;
     case 4:
+      drawColRect(canvasData, 0, canvasData.canvas.width, "#15172C");
+
+      setCanvasTrans(canvasData);
       break;
     case 5:
       break;
@@ -376,11 +380,9 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
   }
 };
 
-export const drawColRect = (canvasData, dx, dWidth, dheight) => {
+export const drawColRect = (canvasData, dx, dWidth = 0, color = "white") => {
   let { ctx } = canvasData;
-  let { height } = canvasData.imgs[0];
-  let color = "white";
-
+  let { height } = canvasData.canvas;
   ctx.fillStyle = color;
   ctx.fillRect(dx, 0, dWidth, height);
 };

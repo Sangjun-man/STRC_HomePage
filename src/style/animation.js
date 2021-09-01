@@ -67,8 +67,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
       );
       break;
     case 3:
-      return console.log(3);
-
+      break;
     case 4:
       let { centerX, centerY, radius } = values.photoData.basisCoordinates;
 

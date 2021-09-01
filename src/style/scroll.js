@@ -95,35 +95,45 @@ export const calcCoordinates = (
   photoData,
   index
 ) => {
-  console.log(photoData);
   let { centerX, centerY, radius } = photoData.basisCoordinates;
   let { width: galleryWidth, height: galleryHeight } = photoData.gallerySize;
   let galleryLayoutRatio = galleryHeight / galleryWidth;
-  let currentDeg = (PI2 / 360) * (60 * index + 30);
-  let Lastcoordinates = {
-    x: centerX + radius * Math.cos(currentDeg),
-    y: centerY + radius * galleryLayoutRatio * Math.sin(currentDeg),
-  };
-
-  let currentx, currentY;
-  let coordinates;
+  let currentDeg = (PI2 / 360) * (60 * index - 90);
+  let [LastX, LastY] = [
+    centerX + radius * Math.cos(currentDeg),
+    centerY + radius * galleryLayoutRatio * Math.sin(currentDeg),
+  ];
+  const coordinates = { x: centerX, y: centerY };
 
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
-  const partScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
-
+  const SceneScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
   if (values.length === 3) {
     const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
     const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
     const partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
+    const partScrollRatio = (yOfCurrent - partScrollStart) / partScrollHeight;
     if (
       yOfCurrent >= partScrollStart && //시작점을 지나고
       yOfCurrent <= partScrollEnd //마지막점을 지나지 않아씅면
     ) {
+      // console.log(yOfCurrent, SceneScrollRatio, "part:", partScrollRatio);
+
+      coordinates.x = centerX * (1 - partScrollRatio) + LastX * partScrollRatio;
+      coordinates.y = centerY * (1 - partScrollRatio) + LastY * partScrollRatio;
+      // console.log(centerX, partScrollRatio, LastX);
+      // console.log(centerX * (1 - partScrollRatio) + LastX * partScrollRatio);
+      // console.log(coordinates.x, coordinates.y);
+      return coordinates;
     } else if (yOfCurrent < partScrollStart) {
       //시작점 안지났으면
+      coordinates.x = centerX;
+      coordinates.y = centerY;
+      return coordinates;
     } else if (yOfCurrent > partScrollEnd) {
       //end 지났으면
+      coordinates.x = LastX;
+      coordinates.y = LastY;
     }
   } else {
     // start, end값이 없으면
