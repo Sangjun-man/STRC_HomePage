@@ -3,7 +3,7 @@ import "./App";
 import { currentSceneCheck, setLayout } from "./style/scroll";
 import { layoutData, sceneInfo, canvasData } from "./style/data";
 import { playAnimation } from "./style/animation";
-import imgSrcArr from "./asset";
+import BGimgSrcArr from "./asset/images/background";
 import {
   drawBackgroundCanvas,
   setCanvasLayout,
@@ -16,7 +16,7 @@ const main = () => {
   //각 함수들은 파일 만들어서 임포트해서 사용하기
 
   window.addEventListener("load", () => {
-    // console.log(imgSrcArr);
+    // console.log(BGimgSrcArr);
 
     setLayout(sceneInfo, layoutData); //씬 별로 스크롤 크기 저장
     setCanvasLayout(canvasData);
@@ -44,6 +44,6 @@ const main = () => {
   });
 };
 
-setImgToCanvas(canvasData, imgSrcArr);
+setImgToCanvas(canvasData, BGimgSrcArr);
 setCanvasLayout(canvasData);
 main();

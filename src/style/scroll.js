@@ -1,3 +1,4 @@
+import { calcScrollRatio } from "./canvas.js";
 // export const wholeSectionLayout = (sceneInfo) => {
 //   const layoutData = {
 //     width: window.innerWidth,
@@ -52,7 +53,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
 
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
-  const scrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
+  const partScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
   if (values.length === 3) {
     const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
     const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
@@ -76,38 +77,59 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   } else {
     // start, end값이 없으면
 
-    rv = values[0] + scrollRatio * (values[1] - values[0]); //전체 씬의 스크롤ratio를 반영해서 적용,
+    rv = values[0] + partScrollRatio * (values[1] - values[0]); //전체 씬의 스크롤ratio를 반영해서 적용,
   }
   // console.log(rv);
   //rv는 0~1 사이의 값을 리턴
   return rv;
 };
 
-// export const setLayout = () => {
-//   // 각 스크롤 섹션의 높이 세팅
-//   for (let i = 0; i < sceneInfo.length; i++) {
-//     if (sceneInfo[i].type === "sticky") {
-//       sceneInfo[i].scrollHeight = sceneInfo[i].heightNum * window.innerHeight;
-//     } else if (sceneInfo[i].type === "normal") {
-//       sceneInfo[i].scrollHeight =
-//         sceneInfo[i].objs.content.offsetHeight + window.innerHeight * 0.5;
-//     }
-//     sceneInfo[i].objs.container.style.height = `${sceneInfo[i].scrollHeight}px`;
-//   }
+/////////////////////////////
+//반복되는 로직 리팩토링이 필요하다//
+////////////////////////////
+const PI2 = Math.PI * 2;
+export const calcCoordinates = (
+  sceneInfo,
+  layoutData,
+  values,
+  photoData,
+  index
+) => {
+  console.log(photoData);
+  let { centerX, centerY, radius } = photoData.basisCoordinates;
+  let { width: galleryWidth, height: galleryHeight } = photoData.gallerySize;
+  let galleryLayoutRatio = galleryHeight / galleryWidth;
+  let currentDeg = (PI2 / 360) * (60 * index + 30);
+  let Lastcoordinates = {
+    x: centerX + radius * Math.cos(currentDeg),
+    y: centerY + radius * galleryLayoutRatio * Math.sin(currentDeg),
+  };
 
-//   yOffset = window.pageYOffset;
+  let currentx, currentY;
+  let coordinates;
 
-//   let totalScrollHeight = 0;
-//   for (let i = 0; i < sceneInfo.length; i++) {
-//     totalScrollHeight += sceneInfo[i].scrollHeight;
-//     if (totalScrollHeight >= yOffset) {
-//       currentScene = i;
-//       break;
-//     }
-//   }
-//   document.body.setAttribute("id", `show-scene-${currentScene}`);
+  const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
+  const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
+  const partScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
 
-//   const heightRatio = window.innerHeight / 1080;
-//   sceneInfo[0].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
-//   sceneInfo[2].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
-// };
+  if (values.length === 3) {
+    const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
+    const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
+    const partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
+    if (
+      yOfCurrent >= partScrollStart && //시작점을 지나고
+      yOfCurrent <= partScrollEnd //마지막점을 지나지 않아씅면
+    ) {
+    } else if (yOfCurrent < partScrollStart) {
+      //시작점 안지났으면
+    } else if (yOfCurrent > partScrollEnd) {
+      //end 지났으면
+    }
+  } else {
+    // start, end값이 없으면
+  }
+
+  return coordinates;
+};
+
+// 변환된 x y 값을 리턴해주는 함수,

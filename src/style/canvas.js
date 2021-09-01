@@ -184,8 +184,49 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       break;
     }
     case 2: {
-      // 헌수형 등짝 추가
+      const [imgs, nextImgs] = [
+        canvasData.imgs[currentScene],
+        canvasData.imgs[currentScene + 1],
+      ];
+      let { image: prevImage, height, width } = imgs;
+      let { image: nextImage } = nextImgs;
+      let rv = calcCanvasValues(imgs, sceneInfo, layoutData, values.blendValue);
+      let {
+        sx,
+        sy,
+        sWidth,
+        sHeight,
+        dx,
+        dy,
+        dWidth,
+        dHeight,
+        partScrollRatio,
+      } = rv;
+      canvasData.ctx.drawImage(
+        prevImage,
+        sx,
+        sy,
+        sWidth,
+        sHeight,
+        dx,
+        dy,
+        dWidth,
+        dHeight
+      );
+      canvasData.ctx.drawImage(
+        nextImage,
+        sx,
+        sy,
+        partScrollRatio * width,
+        sHeight,
+        partScrollRatio * width,
+        dy,
+        partScrollRatio * width,
+        dHeight
+      );
+      setCanvasTrans(canvasData);
       break;
+      // 헌수형 등짝 추가
     }
     case 3:
       drawLinearBGColor(
@@ -193,6 +234,8 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         values.linearBackground,
         calcScrollRatio(sceneInfo, layoutData, values.linearBackground[2])
       );
+      setCanvasTrans(canvasData);
+
       break;
     case 4:
       break;
@@ -206,7 +249,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
 
 // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) (en-US)
 
-const calcScrollRatio = (sceneInfo, layoutData, values) => {
+export const calcScrollRatio = (sceneInfo, layoutData, values) => {
   let yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   let scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
   let partScrollStart = values.start * scrollHeight; //시작스크롤위치
@@ -366,10 +409,10 @@ export const drawLinearBGColor = (canvasData, values, scrollRatio) => {
         prevRGBA[i] * (1 - scrollRatio) + nextRGBA[i] * scrollRatio
       );
 
-      console.log(RGBvalue);
+      // console.log(RGBvalue);
       drawColor += `${RGBvalue.toString(16)}`;
     }
-    console.log(drawColor);
+    // console.log(drawColor);
   }
   ctx.fillStyle = drawColor;
   ctx.fillRect(0, 0, width, height);

@@ -1,6 +1,8 @@
 import "./pages/firstPage";
 import "./pages/secondPage";
 import "./pages/thirdPage";
+import "./pages/galleryPage";
+import "./pages/operationPage";
 
 // firstPage();
 // secondPage();

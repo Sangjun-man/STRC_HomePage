@@ -50,7 +50,7 @@ const LineMap = () => {
     setInnerWidth(window.innerWidth);
     setInnerHeight(window.innerHeight);
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth, window.innerHeight);
+      // console.log(window.innerWidth, window.innerHeight);
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
     });

@@ -64,6 +64,7 @@ export const sceneInfo = [
       leftLine: document.querySelector("#about-left-line"),
     },
     values: {
+      blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
       gradient: [0, 1, { start: 0.1, end: 0.3 }],
       leftLine: [0, 1, { start: 0.3, end: 0.4 }],
     },
@@ -86,7 +87,15 @@ export const sceneInfo = [
     objs: {
       scene: document.querySelector("#scene-4"),
     },
-    values: {},
+    values: {
+      photoData: {},
+      photo0: [0, 1, { start: 0, end: 1 }],
+      photo1: [0, 1, { start: 0, end: 1 }],
+      photo2: [0, 1, { start: 0, end: 1 }],
+      photo3: [0, 1, { start: 0, end: 1 }],
+      photo4: [0, 1, { start: 0, end: 1 }],
+      photo5: [0, 1, { start: 0, end: 1 }],
+    },
   },
   {
     type: "5",

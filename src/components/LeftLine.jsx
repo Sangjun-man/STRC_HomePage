@@ -1,62 +1,75 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import STRCLeftLine from "../asset/svg/STRC_LeftLine.svg";
-
 const StyledLeftLine = styled.div`
   display: ${(props) => {
-    return props.width < props.height ? `none` : `block`;
+    return props.innerWidth < props.height ? `none` : `block`;
   }};
-  position: fixed;
-  top: ${(props) => {
-    // console.log(props);
-    return props.top;
-  }}px;
-  left: ${(props) => {
-    // console.log(props.left);
-    return props.left;
-  }}px;
+
+  width: ${(props) => props.width + props.left + 30}px;
+  height: ${(props) => props.height}px;
+
+  ${(props) => {
+    //포지션 fixed냐 Relative냐에 따라서, topleft 수정 / margin-left 수정
+    switch (props.position) {
+      case "relative":
+        return css`
+          position: relative;
+          margin-left: ${(props) => props.left}px;
+        `;
+      default:
+        return css`
+          position: fixed;
+          top: ${(props) => props.top}px;
+          left: ${(props) => props.left}px;
+        `;
+    }
+  }}
+
   z-index: 9;
+  background-image: url(${STRCLeftLine});
+  background-repeat: no-repeat;
+  background-size: auto 100%;
 `;
 
 const LeftLine = (props) => {
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
+
   useEffect(() => {
     setInnerWidth(window.innerWidth);
     setInnerHeight(window.innerHeight);
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth, window.innerHeight);
+      // console.log(window.innerWidth, window.innerHeight);
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
     });
   }, []);
 
   const initLeftLine = {
-    left: 56.1695, //0.052
+    left: 56, //0.052
     top: 0,
-    width: 160, //0.149
+    width: 163, //0.149
     height: 1080,
   };
   const LeftLine = {
-    left: innerWidth * 0.052,
+    left: (initLeftLine.left * innerWidth) / 1920,
     top: 0,
-    width: innerWidth * 0.149,
+    width: (initLeftLine.width * innerWidth) / 1920,
+    innerWidth: innerWidth,
     height: innerHeight,
   }; //전체 브라우저 크기에서 width와 height 정해짐
+  // console.log(LeftLine);
   return (
     <>
       <StyledLeftLine
         top={LeftLine.top}
         left={LeftLine.left}
-        width={innerWidth}
-        height={innerHeight}
-      >
-        <img
-          src={STRCLeftLine}
-          height={LeftLine.height}
-          width={LeftLine.width}
-        ></img>
-      </StyledLeftLine>
+        width={LeftLine.width}
+        height={LeftLine.height}
+        innerWidth={LeftLine.innerWidth}
+        position={props.position}
+      ></StyledLeftLine>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { calcCssValues } from "./scroll";
+import { calcCoordinates, calcCssValues } from "./scroll";
 
 export const playAnimation = (sceneInfo, layoutData) => {
   //씬넘버 온 - 케이스를 나눈다
@@ -70,8 +70,32 @@ export const playAnimation = (sceneInfo, layoutData) => {
       return console.log(3);
 
     case 4:
-      return console.log(4);
+      let { centerX, centerY, radius } = values.photoData.basisCoordinates;
 
+      for (let i = 0; i <= 5; i++) {
+        objs[`photo${i}`].style.opacity = calcCssValues(
+          sceneInfo,
+          layoutData,
+          values[`photo${i}`]
+        );
+      }
+      // console.log(objs.photo1.style.opacity, objs.photo1.style.top);
+
+      for (let i = 0; i <= 5; i++) {
+        let { x: LastX, y: LastY } = calcCoordinates(
+          sceneInfo,
+          layoutData,
+          values[`photo${i}`],
+          values.photoData,
+          i
+        );
+        objs[`photo${i}`].style.top = `${LastY}px`;
+        objs[`photo${i}`].style.left = `${LastX}px`;
+
+        // objs[`photo${i}`].style.top = `${centerY}px`;
+        // objs[`photo${i}`].style.left = `${centerX}px`;
+        objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
+      }
     case 5:
       return console.log(5);
 

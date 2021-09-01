@@ -85,3 +85,26 @@ section > div {
   );
   z-index: 7;
 }
+#gallery-container {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+#gallery-photo {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+#operation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
