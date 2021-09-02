@@ -118,7 +118,9 @@ export const calcCoordinates = (
       }
 
       case "mobile": {
-        let currentRadius = galleryHeight * 0.7 - galleryHeight * 0.05 * index;
+        let currentRadius =
+          galleryHeight * 0.55 -
+          galleryHeight * 0.07 * (index < 6 ? index : index - 6);
         // console.log(centerY);
         LastX = centerX;
         LastY = centerY - currentRadius;

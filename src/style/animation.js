@@ -75,17 +75,29 @@ export const playAnimation = (sceneInfo, layoutData) => {
       break;
     case 4:
       let { centerX, centerY, radius } = values.photoData.basisCoordinates;
-
-      for (let i = 0; i <= 5; i++) {
+      for (let i = 0; i < 12; i++) {
         objs[`photo${i}`].style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
           values[`photo${i}`]
         );
+        let { x: LastX, y: LastY } = calcCoordinates(
+          sceneInfo,
+          layoutData,
+          values[`photo${i}`],
+          values.photoData,
+          i
+        );
+        objs[`photo${i}`].style.top = `${LastY}px`;
+        objs[`photo${i}`].style.left = `${LastX}px`;
+        objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
-      // console.log(objs.photo1.style.opacity, objs.photo1.style.top);
-
-      for (let i = 0; i <= 5; i++) {
+      for (let i = 0; i < 12; i++) {
+        objs[`photo${i}`].style.opacity = calcCssValues(
+          sceneInfo,
+          layoutData,
+          values[`photo${i}`]
+        );
         let { x: LastX, y: LastY } = calcCoordinates(
           sceneInfo,
           layoutData,

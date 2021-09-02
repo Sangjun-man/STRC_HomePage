@@ -93,7 +93,7 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 8,
+    heightNum: 20,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
@@ -101,17 +101,23 @@ export const sceneInfo = [
     values: {
       // animation.js에서 여기 데이터를 사용한다.
       photoData: {},
-      photo0: [0, 1, { start: 0.1, end: 0.2 }],
-      photo1: [0, 1, { start: 0.2, end: 0.3 }],
-      photo2: [0, 1, { start: 0.3, end: 0.4 }],
-      photo3: [0, 1, { start: 0.4, end: 0.5 }],
-      photo4: [0, 1, { start: 0.5, end: 0.6 }],
-      photo5: [0, 1, { start: 0.6, end: 0.7 }],
+      photo0: [0, 1, { start: 0.1, end: 0.15 }],
+      photo1: [0, 1, { start: 0.15, end: 0.2 }],
+      photo2: [0, 1, { start: 0.2, end: 0.25 }],
+      photo3: [0, 1, { start: 0.3, end: 0.35 }],
+      photo4: [0, 1, { start: 0.35, end: 0.4 }],
+      photo5: [0, 1, { start: 0.4, end: 0.45 }],
+      photo6: [0, 1, { start: 0.55, end: 0.6 }],
+      photo7: [0, 1, { start: 0.6, end: 0.65 }],
+      photo8: [0, 1, { start: 0.7, end: 0.75 }],
+      photo9: [0, 1, { start: 0.75, end: 0.8 }],
+      photo10: [0, 1, { start: 0.85, end: 0.9 }],
+      photo11: [0, 1, { start: 0.95, end: 1 }],
     },
   },
   {
     type: "5",
-    heightNum: 2,
+    heightNum: 8,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-5"),
