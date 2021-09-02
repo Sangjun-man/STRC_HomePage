@@ -49,6 +49,7 @@ export const currentSceneCheck = (sceneInfo, layoutData) => {
 
 export const calcCssValues = (sceneInfo, layoutData, values) => {
   //
+  // console.log(sceneInfo, layoutData, values);
   let rv;
 
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
@@ -81,6 +82,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   }
   // console.log(rv);
   //rv는 0~1 사이의 값을 리턴
+  // console.log(rv);
   return rv;
 };
 

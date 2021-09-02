@@ -66,6 +66,11 @@ section > div {
   left: 0;
   z-index: -10;
 }
+
+#first-page-logo {
+  width: 100vw;
+  height: 100vh;
+}
 #line-map {
   opacity: 1;
 }

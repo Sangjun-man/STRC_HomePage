@@ -116,10 +116,11 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       );
 
       //canvasData , x위치, 넓이
-      drawColRect(canvasData, width * 0, width / 12);
-      drawColRect(canvasData, width * 0.3, width / 20);
-      drawColRect(canvasData, width * 0.6, width / 20);
-      drawColRect(canvasData, width * 0.95, width / 10);
+      let widthRatio = width / 1920;
+      drawColRect(canvasData, 0, 105 * widthRatio);
+      drawColRect(canvasData, 405 * widthRatio, 121.5 * widthRatio);
+      drawColRect(canvasData, 1161.48 * widthRatio, 58.2 * widthRatio);
+      drawColRect(canvasData, 1876 * widthRatio, 45 * widthRatio);
       drawColRect(
         canvasData,
         width * calcScrollRatio(sceneInfo, layoutData, values.rectMove),

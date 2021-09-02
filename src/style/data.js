@@ -20,10 +20,15 @@ export const sceneInfo = [
     objs: {
       canvas: document.getElementById("#background-canvas"),
       scene: document.querySelector("#scene-0"),
+      firstLogo: document.querySelector("#first-page-logo"),
       sceneFirst: document.querySelector("#scene-0-first"),
       sceneNext: document.querySelector("#scene-0-next"),
     },
     values: {
+      firstLogo: [
+        [0, 1, { start: 0, end: 0.25 }],
+        [500, -300, { start: 0.7, end: 1 }],
+      ],
       sceneFirst: [
         [0, 0, { start: 0, end: 0.25 }],
         [0, 0, { start: 0.25, end: 0.5 }],

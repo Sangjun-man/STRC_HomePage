@@ -14,7 +14,7 @@ const StyledGalleryPhotoWeb = styled.div`
   background-size: 108%;
 `;
 // 그냥 props만 전달인데 styled 컴포넌트 쓸 필요가 있나?
-const GalleryWeb = (props, { imgSrcArr }) => {
+const Gallery = (props, { imgSrcArr }) => {
   // props로 넘어오는게 바로 넘어오는듯 하다 비구조화할당 하면 한박자 늦게 오느듣ㅅ
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
@@ -118,4 +118,4 @@ const GalleryWeb = (props, { imgSrcArr }) => {
   );
 };
 
-export default GalleryWeb;
+export default Gallery;

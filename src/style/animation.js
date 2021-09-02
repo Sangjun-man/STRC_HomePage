@@ -15,26 +15,30 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
   switch (layoutData.currentScene) {
     case 0:
-      objs.scene.style.display = "block";
-      objs.sceneFirst.style.opacity = calcCssValues(
+      objs.firstLogo.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
-        scrollRatio <= values.sceneFirst[0][2].end
-          ? values.sceneFirst[0]
-          : values.sceneFirst[1]
+        scrollRatio <= values.firstLogo[0][2].end
+          ? values.firstLogo[0]
+          : values.firstLogo[1]
       );
-      objs.sceneNext.style.opacity = calcCssValues(
-        sceneInfo,
-        layoutData,
-        scrollRatio <= values.sceneNext[0][2].end
-          ? values.sceneNext[0]
-          : values.sceneNext[1]
-      );
+      //이미지 옮기기 실패,,
+      // objs.firstLogoImg.style.top = calcCssValues(
+      //   sceneInfo,
+      //   layoutData,
+      //   values.firstLogo[1]
+      // );
+      // console.log(objs.firstLogoImg.style);
+
+      // objs.sceneNext.style.opacity = calcCssValues(
+      //   sceneInfo,
+      //   layoutData,
+      //   scrollRatio <= values.sceneNext[0][2].end
+      //     ? values.sceneNext[0]
+      //     : values.sceneNext[1]
+      // );
       break;
     case 1:
-      // console.log(objs.lineMap.style);
-      objs.scene.style.display = "block";
-
       objs.lineMap.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
