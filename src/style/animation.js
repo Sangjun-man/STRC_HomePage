@@ -45,26 +45,24 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
       break;
     case 2:
-      objs.scene.style.display = "block";
+      console.log(objs);
 
-      objs.gradient.style.left = `${
-        -50 +
-        calcCssValues(
+      if (window.innerWidth < 768) {
+        objs.gradient.style.top = `${
+          80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
+        }%`;
+        console.log(objs.gradient.style.top);
+      } else {
+        objs.gradient.style.left = `${
+          -50 + calcCssValues(sceneInfo, layoutData, values.gradient) * 50
+        }%`;
+
+        objs.leftLine.style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
-          values.gradient
-          // scrollRatio <= values.lineMapOpacity[0][2].end
-          //   ? values.lineMapOpacity[0]
-          //   : values.lineMapOpacity[1]}
-        ) *
-          50
-      }%`;
-
-      objs.leftLine.style.opacity = calcCssValues(
-        sceneInfo,
-        layoutData,
-        values.leftLine
-      );
+          values.leftLine
+        );
+      }
       break;
     case 3:
       break;

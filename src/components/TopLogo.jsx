@@ -26,7 +26,7 @@ const STRCLogoStyle = {
 };
 
 const TopLogo = React.forwardRef((props, ref) => {
-  console.log(ref);
+  // console.log(ref);
   // const container = useRef();
   // const whiteLogoRef = useRef();
   // const colorLogoRef = useRef();

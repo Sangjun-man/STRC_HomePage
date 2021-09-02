@@ -70,7 +70,7 @@ export const sceneInfo = [
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-2"),
-      gradient: document.querySelector("#about-gradient"),
+      // gradient: document.querySelector("#about-gradient"),
       leftLine: document.querySelector("#about-left-line"),
     },
     values: {

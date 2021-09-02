@@ -81,19 +81,19 @@ section > div {
 }
 
 #about-gradient {
-  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  /* position: fixed;
   width: 80%;
   height: 100%;
   top: 0%;
   left: -50%;
-  /* background-color: linear-gradient(to right, purple 0, transparent 25%);
-   */
   background: linear-gradient(
     to right,
     rgba(30, 19, 38, 1) 25%,
     transparent 100%
   );
-  z-index: 7;
+  z-index: 7; */
 }
 #gallery-container {
   display: flex;
