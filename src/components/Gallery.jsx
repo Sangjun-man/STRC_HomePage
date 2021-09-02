@@ -4,7 +4,7 @@ import { sceneInfo } from "../style/data";
 import galleryTypo from "../asset/svg/Gallery_Typo.svg";
 
 const StyledGalleryTypo = styled.div`
-  ${(props) => console.log(props)}
+  /* ${(props) => console.log(props)} */
   position: fixed;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
@@ -143,7 +143,7 @@ const Gallery = (props, { imgSrcArr }) => {
     });
   }, []);
 
-  if (innerWidth < innerHeight) {
+  if (innerWidth < 768) {
     photoData = {
       type: "mobile",
       gallerySize: gallerySizeMobile,
