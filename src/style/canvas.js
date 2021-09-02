@@ -87,7 +87,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         canvasData.imgs[currentScene + 1],
       ];
       let { image: prevImage, height, width } = imgs;
-      let { image: nextImage, height: nextHeight, width: nextWidth } = nextImgs;
+      let { image: nextImage } = nextImgs;
       let rv = calcCanvasValues(imgs, sceneInfo, layoutData, values.blendValue);
       let {
         sx,
@@ -128,7 +128,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
       canvasData.ctx.drawImage(
         nextImage,
         sx,
-        (1 - partScrollRatio) * nextHeight,
+        (1 - partScrollRatio) * height,
         width,
         partScrollRatio * height,
         dx,
@@ -176,11 +176,12 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         sy,
         partScrollRatio * width,
         sHeight,
-        partScrollRatio * width,
+        dx,
         dy,
         partScrollRatio * width,
         dHeight
       );
+
       setCanvasTrans(canvasData);
       break;
     }

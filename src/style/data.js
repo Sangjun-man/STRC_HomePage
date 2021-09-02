@@ -88,6 +88,7 @@ export const sceneInfo = [
       scene: document.querySelector("#scene-4"),
     },
     values: {
+      // animation.js에서 여기 데이터를 사용한다.
       photoData: {},
       photo0: [0, 1, { start: 0.1, end: 0.3 }],
       photo1: [0, 1, { start: 0.2, end: 0.4 }],

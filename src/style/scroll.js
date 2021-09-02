@@ -85,7 +85,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
 };
 
 /////////////////////////////
-//반복되는 로직 리팩토링이 필요하다//
+//반복되는 스크롤 비율 구하는 로직 리팩토링이 필요하다//
 ////////////////////////////
 const PI2 = Math.PI * 2;
 export const calcCoordinates = (
@@ -98,45 +98,62 @@ export const calcCoordinates = (
   let { centerX, centerY, radius } = photoData.basisCoordinates;
   let { width: galleryWidth, height: galleryHeight } = photoData.gallerySize;
   let galleryLayoutRatio = galleryHeight / galleryWidth;
-  let currentDeg = (PI2 / 360) * (60 * index - 90);
-  let [LastX, LastY] = [
-    centerX + radius * Math.cos(currentDeg),
-    centerY + radius * galleryLayoutRatio * Math.sin(currentDeg),
-  ];
+  let LastX, LastY;
   const coordinates = { x: centerX, y: centerY };
-
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
   const SceneScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
-  if (values.length === 3) {
-    const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
-    const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
-    const partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
-    const partScrollRatio = (yOfCurrent - partScrollStart) / partScrollHeight;
-    if (
-      yOfCurrent >= partScrollStart && //시작점을 지나고
-      yOfCurrent <= partScrollEnd //마지막점을 지나지 않아씅면
-    ) {
-      // console.log(yOfCurrent, SceneScrollRatio, "part:", partScrollRatio);
+  const partScrollStart = values[2].start * scrollHeight; //시작스크롤위치
+  const partScrollEnd = values[2].end * scrollHeight; // 끝나는스크롤위치
+  const partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
+  const partScrollRatio = (yOfCurrent - partScrollStart) / partScrollHeight;
 
-      coordinates.x = centerX * (1 - partScrollRatio) + LastX * partScrollRatio;
-      coordinates.y = centerY * (1 - partScrollRatio) + LastY * partScrollRatio;
-      // console.log(centerX, partScrollRatio, LastX);
-      // console.log(centerX * (1 - partScrollRatio) + LastX * partScrollRatio);
-      // console.log(coordinates.x, coordinates.y);
-      return coordinates;
-    } else if (yOfCurrent < partScrollStart) {
-      //시작점 안지났으면
-      coordinates.x = centerX;
-      coordinates.y = centerY;
-      return coordinates;
-    } else if (yOfCurrent > partScrollEnd) {
-      //end 지났으면
-      coordinates.x = LastX;
-      coordinates.y = LastY;
+  if (
+    yOfCurrent >= partScrollStart && //시작점을 지나고
+    yOfCurrent <= partScrollEnd //마지막점을 지나지 않아씅면
+  ) {
+    switch (photoData.type) {
+      case "web": {
+        let currentDeg = (PI2 / 360) * (60 * index - 90);
+
+        LastX = centerX + radius * Math.cos(currentDeg);
+        LastY = centerY + radius * galleryLayoutRatio * Math.sin(currentDeg);
+
+        coordinates.x =
+          centerX * (1 - partScrollRatio) + LastX * partScrollRatio;
+        coordinates.y =
+          centerY * (1 - partScrollRatio) + LastY * partScrollRatio;
+        // console.log("web");
+
+        return coordinates;
+      }
+
+      case "mobile": {
+        let currentRadius = galleryHeight * 0.7 - galleryHeight * 0.05 * index;
+        console.log(centerY);
+        LastX = centerX;
+        LastY = centerY - currentRadius;
+
+        coordinates.x =
+          centerX * (1 - partScrollRatio) + LastX * partScrollRatio;
+        coordinates.y =
+          centerY * (1 - partScrollRatio) + LastY * partScrollRatio;
+
+        // console.log("mobile");
+
+        return coordinates;
+      }
     }
-  } else {
-    // start, end값이 없으면
+  } else if (yOfCurrent < partScrollStart) {
+    //시작점 안지났으면
+    coordinates.x = centerX;
+    coordinates.y = centerY;
+    return coordinates;
+  } else if (yOfCurrent > partScrollEnd) {
+    //end 지났으면
+    coordinates.x = LastX;
+    coordinates.y = LastY;
+    return coordinates;
   }
 
   return coordinates;

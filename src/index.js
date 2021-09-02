@@ -44,6 +44,21 @@ const main = () => {
   });
 };
 
+// let acc = 0.1;
+// let yoffset = 0;
+// let delayedYOffset = 0;
+// let rafId;
+// const loop = (layoutData) => {
+//   delayedYOffset += (window.pageYOffset - delayedYOffset) * acc;
+//   yoffset = delayedYOffset;
+//   console.log(yoffset);
+
+//   rafId = requestAnimationFrame(loop(layoutData));
+//   if (window.pageYOffset - yoffset < 1) {
+//     cancelAnimationFrame(rafId);
+//   }
+// };
+// loop(layoutData);
 setImgToCanvas(canvasData, BGimgSrcArr);
 setCanvasLayout(canvasData);
 main();
