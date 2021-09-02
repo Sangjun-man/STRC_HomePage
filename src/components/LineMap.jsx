@@ -7,35 +7,53 @@ const StyledLineMap = styled.div`
   position: fixed;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
-  top: ${(props) => {
-    // console.log(props);
-    return props.top;
-  }}px;
-  left: ${(props) => {
-    // console.log(props.left);
-    return props.left;
-  }}px;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  @media screen and (max-width: 768px) {
+    transform: scale(1.4);
+    top: ${(props) => props.top - 40}px;
+  }
   z-index: 5;
 `;
 
 const StyledMapMenu = styled.a`
-  font-size: ${(props) => {
-    return props.fontSize;
-  }}px;
+  font-size: ${(props) => props.fontSize}px;
+
   color: white;
   position: absolute;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
+
+  @media screen and (max-width: 768px) {
+    transform: translate(-20%, 70%) scale(0.8);
+  }
+  /* ${(props) => {
+    if (props.translate) {
+      let translate = props.translate;
+
+      css`
+        transform: translate;
+      `;
+    }
+  }} */
 `;
 
 //styled-component 라인 지도
-const LineMapMenu = ({ children, top, left, fontSize, scrollTo }) => {
+const LineMapMenu = ({
+  children,
+  top,
+  left,
+  fontSize,
+  translate,
+  scrollTo,
+}) => {
   return (
     <StyledMapMenu
       top={top}
       left={left}
       fontSize={fontSize}
       onClick={() => window.scrollTo(scrollTo)}
+      translate={translate}
     >
       {children}
     </StyledMapMenu>
@@ -78,8 +96,8 @@ const LineMap = () => {
     //좌표 기준을 라인맵 시작점으로 맞추기 (471.65 - 331.32)
     //각각의 글씨 위치
     About: {
-      left: ((666.8428 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((305.1909 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      left: ((645.8428 - initLineMap.left) / initLineMap.width) * LineMap.width,
+      top: ((300.1909 - initLineMap.top) / initLineMap.height) * LineMap.height,
       fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Start: {
@@ -90,12 +108,12 @@ const LineMap = () => {
     },
     Community: {
       left: ((904.5049 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((951.394 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      top: ((946.394 - initLineMap.top) / initLineMap.height) * LineMap.height,
       fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Gallery: {
       left: ((370.9561 - initLineMap.left) / initLineMap.width) * LineMap.width,
-      top: ((699.3384 - initLineMap.top) / initLineMap.height) * LineMap.height,
+      top: ((695.3384 - initLineMap.top) / initLineMap.height) * LineMap.height,
       fontSize: (32 / initLineMap.height) * LineMap.height,
     },
     Contact: {
@@ -131,13 +149,13 @@ const LineMap = () => {
             behavior: "smooth",
           }}
         >
-          {" "}
           About
         </LineMapMenu>
         <LineMapMenu
           top={Start.top}
           left={Start.left}
           fontSize={Start.fontSize}
+          translate={"0"}
         >
           Start
         </LineMapMenu>

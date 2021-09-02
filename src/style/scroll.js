@@ -1,15 +1,3 @@
-import { calcScrollRatio } from "./canvas.js";
-// export const wholeSectionLayout = (sceneInfo) => {
-//   const layoutData = {
-//     width: window.innerWidth,
-//     height: window.innerHeight,
-//     wholeHeight: window.innerHeight * 7,
-//   };
-//   for (let i in sceneInfo) {
-//     sceneInfo[i].scrollHeight = layoutData.height * sceneInfo[i].heightNum;
-//   }
-// };
-
 export const setLayout = (sceneInfo, layoutData) => {
   if (sceneInfo) {
     for (let i in sceneInfo) {
@@ -82,7 +70,6 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   }
   // console.log(rv);
   //rv는 0~1 사이의 값을 리턴
-  // console.log(rv);
   return rv;
 };
 
@@ -132,7 +119,7 @@ export const calcCoordinates = (
 
       case "mobile": {
         let currentRadius = galleryHeight * 0.7 - galleryHeight * 0.05 * index;
-        console.log(centerY);
+        // console.log(centerY);
         LastX = centerX;
         LastY = centerY - currentRadius;
 
@@ -140,7 +127,6 @@ export const calcCoordinates = (
           centerX * (1 - partScrollRatio) + LastX * partScrollRatio;
         coordinates.y =
           centerY * (1 - partScrollRatio) + LastY * partScrollRatio;
-
         // console.log("mobile");
 
         return coordinates;
@@ -162,3 +148,45 @@ export const calcCoordinates = (
 };
 
 // 변환된 x y 값을 리턴해주는 함수,
+
+export const logoControl = (logoInfo, layoutData) => {
+  const currentScene = layoutData.currentScene;
+  const objs = logoInfo.topLogo.objs;
+  // const value = logoInfo.topLogo.values.topLogo;
+  // const topLogoWidth = window.innerWidth < 768 ? 65 : 150;
+  // const topLogoLeft = window.innerWidth < 768 ? 20 : 1695;
+  switch (currentScene) {
+    case 0:
+      // console.log(objs);
+      objs.container.style.display = "none";
+      break;
+    case 1:
+      // console.log(objs);
+      objs.colorLogo.style.display = "none";
+      objs.whiteLogo.style.display = "block";
+      objs.container.style.display = "block";
+
+      // objs.style.left = `${(window.innerWidth - topLogoWidth) / 2}px`;
+      break;
+    case 2:
+      // objs.style.left = `${topLogoLeft}px`;
+      break;
+
+    case 3:
+      objs.whiteLogo.style.display = "none";
+      objs.colorLogo.style.display = "block";
+
+      break;
+
+    case 4:
+      objs.whiteLogo.style.display = "block";
+      objs.colorLogo.style.display = "none";
+      break;
+
+    case 5:
+      break;
+
+    case 6:
+      break;
+  }
+};

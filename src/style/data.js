@@ -11,14 +11,19 @@ export const canvasData = {
   ctx: "",
   imgs: [],
 };
-
+export const logoInfo = {
+  topLogo: {
+    objs: {},
+    values: [0, 1, { start: 0.3, end: 0.4 }],
+    imgs: [],
+  },
+};
 export const sceneInfo = [
   {
     type: "0",
     heightNum: 8,
     scrollHeight: 0,
     objs: {
-      canvas: document.getElementById("#background-canvas"),
       scene: document.querySelector("#scene-0"),
       firstLogo: document.querySelector("#first-page-logo"),
       sceneFirst: document.querySelector("#scene-0-first"),
@@ -27,7 +32,7 @@ export const sceneInfo = [
     values: {
       firstLogo: [
         [0, 1, { start: 0, end: 0.25 }],
-        [500, -300, { start: 0.7, end: 1 }],
+        [0, (-window.innerHeight * 1.2) / 2, { start: 0.85, end: 1 }],
       ],
       sceneFirst: [
         [0, 0, { start: 0, end: 0.25 }],

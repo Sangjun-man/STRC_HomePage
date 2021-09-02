@@ -15,16 +15,17 @@ const StyledFirstPageLogo = styled.div`
 `;
 const STRCLogoStyle = {
   width: "100%",
+  position: "absolute",
 };
 
-const FirstPageLogo = (props) => {
+const FirstPageLogo = React.forwardRef((props, ref) => {
   return (
     <>
       <StyledFirstPageLogo>
-        <img src={STRC_FirstPageLogo} style={STRCLogoStyle}></img>
+        <img src={STRC_FirstPageLogo} style={STRCLogoStyle} ref={ref}></img>
       </StyledFirstPageLogo>
     </>
   );
-};
+});
 
 export default FirstPageLogo;

@@ -1,7 +1,7 @@
 import "./index.css";
 import "./App";
-import { currentSceneCheck, setLayout } from "./style/scroll";
-import { layoutData, sceneInfo, canvasData } from "./style/data";
+import { currentSceneCheck, setLayout, logoControl } from "./style/scroll";
+import { layoutData, sceneInfo, logoInfo, canvasData } from "./style/data";
 import { playAnimation } from "./style/animation";
 import BGimgSrcArr from "./asset/images/background";
 import {
@@ -40,6 +40,7 @@ const main = () => {
     layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크
     playAnimation(sceneInfo, layoutData);
+    logoControl(logoInfo, layoutData);
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
 };

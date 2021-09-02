@@ -18,18 +18,14 @@ export const playAnimation = (sceneInfo, layoutData) => {
       objs.firstLogo.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
-        scrollRatio <= values.firstLogo[0][2].end
-          ? values.firstLogo[0]
-          : values.firstLogo[1]
+        values.firstLogo[0]
       );
-      //이미지 옮기기 실패,,
-      // objs.firstLogoImg.style.top = calcCssValues(
-      //   sceneInfo,
-      //   layoutData,
-      //   values.firstLogo[1]
-      // );
-      // console.log(objs.firstLogoImg.style);
-
+      // 이미지 옮기기 실패,, -> forwardRef로 성공
+      objs.firstLogoImg.style.top = `${calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.firstLogo[1]
+      )}px`;
       // objs.sceneNext.style.opacity = calcCssValues(
       //   sceneInfo,
       //   layoutData,

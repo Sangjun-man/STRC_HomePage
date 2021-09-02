@@ -1,3 +1,4 @@
+import "./pages/fixedElement";
 import "./pages/firstPage";
 import "./pages/secondPage";
 import "./pages/thirdPage";
