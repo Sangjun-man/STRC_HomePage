@@ -12,6 +12,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
     sceneInfo[currentScene].scrollHeight;
   const objs = sceneInfo[currentScene].objs;
   const values = sceneInfo[currentScene].values;
+  const canvas = sceneInfo[2].objs.canvas;
 
   switch (layoutData.currentScene) {
     case 0:
@@ -45,26 +46,32 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
       break;
     case 2:
-      console.log(objs);
-
       if (window.innerWidth < 768) {
         objs.gradient.style.top = `${
           80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
         }%`;
-        console.log(objs.gradient.style.top);
+        // console.log(objs.gradient.style.top);
       } else {
         objs.gradient.style.left = `${
           -50 + calcCssValues(sceneInfo, layoutData, values.gradient) * 50
         }%`;
-
         objs.leftLine.style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
           values.leftLine
         );
       }
+      let blur = `blur(${calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.canvasBlurry
+      )}px)`;
+      objs.leftLine.style.filter = blur;
+      objs.gradient.style.filter = blur;
+      canvas.style.filter = blur;
       break;
     case 3:
+      canvas.style.filter = "";
       break;
     case 4:
       let { centerX, centerY, radius } = values.photoData.basisCoordinates;
@@ -88,14 +95,10 @@ export const playAnimation = (sceneInfo, layoutData) => {
         );
         objs[`photo${i}`].style.top = `${LastY}px`;
         objs[`photo${i}`].style.left = `${LastX}px`;
-
-        // objs[`photo${i}`].style.top = `${centerY}px`;
-        // objs[`photo${i}`].style.left = `${centerX}px`;
         objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
     case 5:
-      return console.log(5);
-
+      break;
     case 6:
       return console.log(6);
     default:

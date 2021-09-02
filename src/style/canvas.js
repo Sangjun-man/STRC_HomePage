@@ -1,3 +1,5 @@
+import { calcCssValues } from "./scroll";
+
 //이미지 소스, 크기를 데이터에 담아주기
 export const setImgToCanvas = (canvasData, imgSrcArr) => {
   for (let imgSrc of imgSrcArr) {
@@ -216,17 +218,7 @@ export const drawBackgroundCanvas = (sceneInfo, canvasData, layoutData) => {
         dWidth,
         dHeight
       );
-      canvasData.ctx.drawImage(
-        nextImage,
-        sx,
-        sy,
-        partScrollRatio * width,
-        sHeight,
-        partScrollRatio * width,
-        dy,
-        partScrollRatio * width,
-        dHeight
-      );
+
       setCanvasTrans(canvasData);
       break;
       // 헌수형 등짝 추가
@@ -387,6 +379,13 @@ export const drawColRect = (canvasData, dx, dWidth = 0, color = "white") => {
   let { height } = canvasData.canvas;
   ctx.fillStyle = color;
   ctx.fillRect(dx, 0, dWidth, height);
+};
+
+export const drawRowRect = (canvasData, dy, dHeight = 0, color = "white") => {
+  let { ctx } = canvasData;
+  let { width } = canvasData.canvas;
+  ctx.fillStyle = color;
+  ctx.fillRect(0, dy, width, dHeight);
 };
 
 //배경색깔만 전환 -> drawLinearBGColor(canvasData, [처음색깔,나중색깔,{start , end}] ,스크롤 비율 )

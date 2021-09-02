@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import STRCLeftLine from "../asset/svg/STRC_LeftLine.svg";
 const StyledLeftLine = styled.div`
@@ -32,7 +32,9 @@ const StyledLeftLine = styled.div`
   background-size: auto 100%;
 `;
 
-const LeftLine = (props) => {
+// const  =
+
+const LeftLine = forwardRef((props, ref) => {
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
 
@@ -52,27 +54,28 @@ const LeftLine = (props) => {
     width: 163, //0.149
     height: 1080,
   };
-  const LeftLine = {
+  const LeftLineData = {
     left: (initLeftLine.left * innerWidth) / 1920,
     top: 0,
     width: (initLeftLine.width * innerWidth) / 1920,
     innerWidth: innerWidth,
     height: innerHeight,
   }; //전체 브라우저 크기에서 width와 height 정해짐
-  // console.log(LeftLine);
+  // console.log(LeftLineData);
   return (
     <>
       <StyledLeftLine
-        top={LeftLine.top}
-        left={LeftLine.left}
-        width={LeftLine.width}
-        height={LeftLine.height}
-        innerWidth={LeftLine.innerWidth}
+        ref={ref}
+        top={LeftLineData.top}
+        left={LeftLineData.left}
+        width={LeftLineData.width}
+        height={LeftLineData.height}
+        innerWidth={LeftLineData.innerWidth}
         position={props.position}
       ></StyledLeftLine>
     </>
   );
-};
+});
 export default LeftLine;
 
 // const StyledLeftLine = styled.div`

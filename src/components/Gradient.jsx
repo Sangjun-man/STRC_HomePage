@@ -12,9 +12,10 @@ const StyledGradient = styled.div`
     rgba(30, 19, 38, 1) 25%,
     transparent 100%
   );
-  z-index: 7;
 
   @media screen and (max-width: 768px) {
+    position: fixed;
+
     width: 100%;
     height: 80%;
     top: 100%;

@@ -69,30 +69,31 @@ export const sceneInfo = [
     heightNum: 5,
     scrollHeight: 0,
     objs: {
+      canvas: document.querySelector("#background-canvas"),
       scene: document.querySelector("#scene-2"),
-      // gradient: document.querySelector("#about-gradient"),
-      leftLine: document.querySelector("#about-left-line"),
+      leftLine: "",
     },
     values: {
       blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
+      canvasBlurry: [0, 1000, { start: 0.6, end: 0.85 }],
       gradient: [0, 1, { start: 0.1, end: 0.3 }],
-      leftLine: [0, 1, { start: 0.3, end: 0.4 }],
+      leftLine: [0, 1, { start: 0.2, end: 0.5 }],
     },
   },
   {
     type: "3",
-    heightNum: 5,
+    heightNum: 1,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-3"),
     },
     values: {
-      linearBackground: ["#E8E8E8", "#15172C", { start: 0.7, end: 1 }],
+      linearBackground: ["#E8E8E8", "#15172C", { start: 0, end: 1 }],
     },
   },
   {
     type: "4",
-    heightNum: 5,
+    heightNum: 8,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
@@ -100,12 +101,12 @@ export const sceneInfo = [
     values: {
       // animation.js에서 여기 데이터를 사용한다.
       photoData: {},
-      photo0: [0, 1, { start: 0.1, end: 0.3 }],
-      photo1: [0, 1, { start: 0.2, end: 0.4 }],
-      photo2: [0, 1, { start: 0.3, end: 0.5 }],
-      photo3: [0, 1, { start: 0.4, end: 0.6 }],
-      photo4: [0, 1, { start: 0.5, end: 0.7 }],
-      photo5: [0, 1, { start: 0.6, end: 0.8 }],
+      photo0: [0, 1, { start: 0.1, end: 0.2 }],
+      photo1: [0, 1, { start: 0.2, end: 0.3 }],
+      photo2: [0, 1, { start: 0.3, end: 0.4 }],
+      photo3: [0, 1, { start: 0.4, end: 0.5 }],
+      photo4: [0, 1, { start: 0.5, end: 0.6 }],
+      photo5: [0, 1, { start: 0.6, end: 0.7 }],
     },
   },
   {

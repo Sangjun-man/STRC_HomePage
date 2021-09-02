@@ -5,12 +5,15 @@ import Gradient from "../components/Gradient";
 import { sceneInfo } from "../style/data";
 
 const gradient = React.createRef();
-
-ReactDOM.render(<LeftLine />, document.getElementById("about-left-line"));
+const leftLine = React.createRef();
+ReactDOM.render(
+  <LeftLine ref={leftLine} />,
+  document.getElementById("about-left-line")
+);
 ReactDOM.render(
   <Gradient ref={gradient} />,
   document.getElementById("about-gradient")
 );
 
 sceneInfo[2].objs.gradient = gradient.current;
-console.log(sceneInfo[2].objs.gradient);
+sceneInfo[2].objs.leftLine = leftLine.current;
