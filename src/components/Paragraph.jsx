@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import AboutParagraph from "../asset/svg/About_Paragraph.svg";
 
 const StyledParagraph = styled.div`
-  ${(props) => console.log(props)}
   position: fixed;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
@@ -15,7 +14,7 @@ const StyledParagraph = styled.div`
     left: 30px;
   }
 `;
-const Paragraph = (props) => {
+const Paragraph = forwardRef((props, ref) => {
   let paraGraphData = {};
   const initParagraphWeb = {
     left: 297.9487,
@@ -24,10 +23,7 @@ const Paragraph = (props) => {
     height: 318.4233,
   };
   const initParagraphMobile = {
-    // left: 297.9487,
-    // top: 654.0342,
     width: 250,
-    // height: 318.4233,
   };
 
   if (window.innerWidth < 768) {
@@ -49,6 +45,7 @@ const Paragraph = (props) => {
   return (
     <>
       <StyledParagraph
+        ref={ref}
         top={paraGraphData.top}
         left={paraGraphData.left}
         width={paraGraphData.width}
@@ -58,6 +55,6 @@ const Paragraph = (props) => {
       </StyledParagraph>
     </>
   );
-};
+});
 
 export default Paragraph;

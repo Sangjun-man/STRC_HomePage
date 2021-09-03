@@ -8,6 +8,7 @@ import Paragraph from "../components/Paragraph";
 const gradient = React.createRef();
 const leftLine = React.createRef();
 const paragraph = React.createRef();
+
 ReactDOM.render(
   <LeftLine ref={leftLine} />,
   document.getElementById("about-left-line")
@@ -23,4 +24,4 @@ ReactDOM.render(
 
 sceneInfo[2].objs.gradient = gradient.current;
 sceneInfo[2].objs.leftLine = leftLine.current;
-sceneInfo[2].objs.paragraph = leftLine.current;
+sceneInfo[2].objs.paragraph = paragraph.current;

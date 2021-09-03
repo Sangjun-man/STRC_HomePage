@@ -6,7 +6,6 @@ import imgSrcArr from "../asset/images/gallery";
 
 const imgSrcArr1 = imgSrcArr.slice(0, 6);
 const imgSrcArr2 = imgSrcArr.slice(6, 12);
-console.log(imgSrcArr1, imgSrcArr2);
 
 ReactDOM.render(
   <LeftLine position="relative" />,

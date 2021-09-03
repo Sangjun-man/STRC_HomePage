@@ -1,4 +1,4 @@
-import { calcCoordinates, calcCssValues } from "./scroll";
+import { calcCoordinates, calcCssValues, endCheck } from "./scroll";
 
 export const playAnimation = (sceneInfo, layoutData) => {
   //씬넘버 온 - 케이스를 나눈다
@@ -50,7 +50,6 @@ export const playAnimation = (sceneInfo, layoutData) => {
         objs.gradient.style.top = `${
           80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
         }%`;
-        // console.log(objs.gradient.style.top);
       } else {
         objs.gradient.style.left = `${
           -50 + calcCssValues(sceneInfo, layoutData, values.gradient) * 50
@@ -61,6 +60,12 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.leftLine
         );
       }
+      objs.paragraph.style.opacity = calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.paragraph
+      );
+
       let blur = `blur(${calcCssValues(
         sceneInfo,
         layoutData,
@@ -68,14 +73,32 @@ export const playAnimation = (sceneInfo, layoutData) => {
       )}px)`;
       objs.leftLine.style.filter = blur;
       objs.gradient.style.filter = blur;
+      objs.paragraph.style.filter = blur;
+
       canvas.style.filter = blur;
       break;
     case 3:
       canvas.style.filter = "";
       break;
     case 4:
-      let { centerX, centerY, radius } = values.photoData.basisCoordinates;
+      // let { centerX, centerY, radius } = values.photoData.basisCoordinates;
       for (let i = 0; i < 12; i++) {
+        // endCheck(
+        //   sceneInfo,
+        //   layoutData,
+        //   values[`photo${i}`],
+        //   objs[`photo${i}`],
+        //   "top",
+        //   "px"
+        // );
+        // endCheck(
+        //   sceneInfo,
+        //   layoutData,
+        //   values[`photo${i}`],
+        //   objs[`photo${i}`],
+        //   "left",
+        //   "px"
+        // );
         objs[`photo${i}`].style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
@@ -92,23 +115,26 @@ export const playAnimation = (sceneInfo, layoutData) => {
         objs[`photo${i}`].style.left = `${LastX}px`;
         objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
-      for (let i = 0; i < 12; i++) {
-        objs[`photo${i}`].style.opacity = calcCssValues(
-          sceneInfo,
-          layoutData,
-          values[`photo${i}`]
-        );
-        let { x: LastX, y: LastY } = calcCoordinates(
-          sceneInfo,
-          layoutData,
-          values[`photo${i}`],
-          values.photoData,
-          i
-        );
-        objs[`photo${i}`].style.top = `${LastY}px`;
-        objs[`photo${i}`].style.left = `${LastX}px`;
-        objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
-      }
+
+    // for (let i = 0; i < 12; i++) {
+    //   objs[`photo${i}`].style.opacity = calcCssValues(
+    //     sceneInfo,
+    //     layoutData,
+    //     values[`photo${i}`]
+    //   );
+    //   let { x: LastX, y: LastY } = Math.pow(
+    //     calcCoordinates(
+    //       sceneInfo,
+    //       layoutData,
+    //       values[`photo${i}`],
+    //       values.photoData,
+    //       i
+    //     )
+    //   );
+    //   objs[`photo${i}`].style.top = `${LastY}px`;
+    //   objs[`photo${i}`].style.left = `${LastX}px`;
+    //   objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
+    // }}
     case 5:
       break;
     case 6:

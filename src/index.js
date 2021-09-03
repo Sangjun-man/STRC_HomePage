@@ -9,7 +9,7 @@ import {
   setCanvasLayout,
   setImgToCanvas,
 } from "./style/canvas";
-
+import { loop } from "./scrollRaf.js";
 const main = () => {
   //정의된 함수들 -> 임포트 해서 쓸수 있나? 있다
   //여기 메인 함수는 asddEventListener 모아두기
@@ -37,7 +37,8 @@ const main = () => {
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
   window.addEventListener("scroll", () => {
-    layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
+    requestAnimationFrame(loop);
+    // layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크
     playAnimation(sceneInfo, layoutData);
     logoControl(logoInfo, layoutData);
@@ -45,21 +46,6 @@ const main = () => {
   });
 };
 
-// let acc = 0.1;
-// let yoffset = 0;
-// let delayedYOffset = 0;
-// let rafId;
-// const loop = (layoutData) => {
-//   delayedYOffset += (window.pageYOffset - delayedYOffset) * acc;
-//   yoffset = delayedYOffset;
-//   console.log(yoffset);
-
-//   rafId = requestAnimationFrame(loop(layoutData));
-//   if (window.pageYOffset - yoffset < 1) {
-//     cancelAnimationFrame(rafId);
-//   }
-// };
-// loop(layoutData);
 setImgToCanvas(canvasData, BGimgSrcArr);
 setCanvasLayout(canvasData);
 main();

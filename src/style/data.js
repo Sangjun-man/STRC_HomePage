@@ -66,18 +66,20 @@ export const sceneInfo = [
   },
   {
     type: "2",
-    heightNum: 5,
+    heightNum: 8,
     scrollHeight: 0,
     objs: {
       canvas: document.querySelector("#background-canvas"),
       scene: document.querySelector("#scene-2"),
       leftLine: "",
+      paragraph: "",
     },
     values: {
       blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
-      canvasBlurry: [0, 1000, { start: 0.6, end: 0.85 }],
-      gradient: [0, 1, { start: 0.1, end: 0.3 }],
-      leftLine: [0, 1, { start: 0.2, end: 0.5 }],
+      canvasBlurry: [0, 1000, { start: 0.8, end: 0.95 }],
+      gradient: [0, 1, { start: 0.05, end: 0.15 }],
+      paragraph: [0, 1, { start: 0.4, end: 0.5 }],
+      leftLine: [0, 1, { start: 0.15, end: 0.25 }],
     },
   },
   {

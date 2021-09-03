@@ -66,8 +66,6 @@ export const ProfileImage = ({ profileImg, outWidth }) => {
 // `;
 
 const Profile = ({ profileImg, type, leader, member }) => {
-  console.log(profileImg, type, leader, member);
-  // const [profileImg, setprofileImg] = useState();
   const outWidth = 500;
   // useEffect(() => {
   //   console.log(image, type, leader);
