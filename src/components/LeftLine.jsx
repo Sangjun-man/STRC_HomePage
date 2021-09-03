@@ -1,6 +1,9 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import STRCLeftLine from "../asset/svg/STRC_LeftLine.svg";
+import aboutLeftLine from "../asset/svg/About_LeftLine1.svg";
+import contactLeftLine from "../asset/svg/Contact_LeftLine.svg";
+import galleryLeftLine from "../asset/svg/Gallery_LeftLine.svg";
+
 const StyledLeftLine = styled.div`
   display: ${(props) => {
     return props.innerWidth < props.height ? `none` : `block`;
@@ -27,25 +30,29 @@ const StyledLeftLine = styled.div`
   }}
 
   z-index: 9;
-  background-image: url(${STRCLeftLine});
+  background-image: url(${(props) => props.foot});
   background-repeat: no-repeat;
   background-size: auto 100%;
 `;
 
-// const  =
-
 const LeftLine = forwardRef((props, ref) => {
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
+  const foots = {
+    about: aboutLeftLine,
+    contact: contactLeftLine,
+    gallery: galleryLeftLine,
+  };
+  const [foot, setFoot] = useState();
 
   useEffect(() => {
     setInnerWidth(window.innerWidth);
     setInnerHeight(window.innerHeight);
     window.addEventListener("resize", () => {
-      // console.log(window.innerWidth, window.innerHeight);
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
     });
+    setFoot(foots[props.foot]);
   }, []);
 
   const initLeftLine = {
@@ -57,11 +64,13 @@ const LeftLine = forwardRef((props, ref) => {
   const LeftLineData = {
     left: (initLeftLine.left * innerWidth) / 1920,
     top: 0,
-    width: (initLeftLine.width * innerWidth) / 1920,
+    width: props.width
+      ? (initLeftLine.width * innerWidth) / 1920 + 100
+      : (initLeftLine.width * innerWidth) / 1920,
     innerWidth: innerWidth,
     height: innerHeight,
   }; //전체 브라우저 크기에서 width와 height 정해짐
-  // console.log(LeftLineData);
+  console.log(props.width);
   return (
     <>
       <StyledLeftLine
@@ -72,6 +81,7 @@ const LeftLine = forwardRef((props, ref) => {
         height={LeftLineData.height}
         innerWidth={LeftLineData.innerWidth}
         position={props.position}
+        foot={foot}
       ></StyledLeftLine>
     </>
   );

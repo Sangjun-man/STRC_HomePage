@@ -15,6 +15,17 @@ const StyledParagraph = styled.div`
   }
 `;
 const Paragraph = forwardRef((props, ref) => {
+  const [innerWidth, setInnerWidth] = useState();
+  const [innerHeight, setInnerHeight] = useState();
+  useEffect(() => {
+    setInnerWidth(window.innerWidth);
+    setInnerHeight(window.innerHeight);
+    window.addEventListener("resize", () => {
+      // console.log(window.innerWidth, window.innerHeight);
+      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerHeight);
+    });
+  }, []);
   let paraGraphData = {};
   const initParagraphWeb = {
     left: 297.9487,
@@ -35,10 +46,13 @@ const Paragraph = forwardRef((props, ref) => {
     };
   } else {
     paraGraphData = {
-      top: initParagraphWeb.top,
-      left: initParagraphWeb.left,
-      width: initParagraphWeb.width,
-      height: initParagraphWeb.height,
+      top: initParagraphWeb.top * (innerHeight / 1080),
+      left: initParagraphWeb.left * (innerWidth / 1920),
+      width: initParagraphWeb.width * (innerWidth / 1920),
+      height:
+        initParagraphWeb.width *
+        (innerWidth / 1920) *
+        (initParagraphWeb.height / initParagraphWeb.width),
     };
   }
 

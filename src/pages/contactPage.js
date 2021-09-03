@@ -12,7 +12,7 @@ const typo1Ref = React.createRef();
 const typo2Ref = React.createRef();
 
 ReactDOM.render(
-  <LeftLine ref={leftLine} />,
+  <LeftLine foot={"contact"} width={1} ref={leftLine} />,
   document.getElementById("contact-left-line")
 );
 ReactDOM.render(

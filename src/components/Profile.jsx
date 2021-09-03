@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import kakao from "../asset/svg/Contact_KakaoIcon.svg";
 import instagram from "../asset/svg/Contact_InstaIcon.svg";
@@ -38,7 +38,7 @@ const StyledLink = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 77px;
+  height: 7vh;
   margin-top: 12px;
   background-color: gray;
   /* border: 1px solid white; */
@@ -57,8 +57,8 @@ const StyledTitle = styled.div`
 `;
 
 const StyledPhoto = styled.div`
-  width: 329px;
-  height: 312px;
+  width: 31vh;
+  height: 30vh;
   margin-top: 30px;
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
@@ -85,9 +85,9 @@ const StyledIntroduction = styled.div`
 
 const StyledIconStyle = styled.div`
   position: absolute;
-  left: 50px;
-  width: 50px;
-  height: 50px;
+  left: 5vh;
+  width: 5vh;
+  height: 5vh;
   background-image: url(${(props) => props.icon});
   background-repeat: no-repeat;
   flex: 1;
@@ -157,7 +157,19 @@ const Link = ({ text, icon, href }) => {
     </>
   );
 };
+
 const Profile = (props) => {
+  const [innerWidth, setInnerWidth] = useState();
+  const [innerHeight, setInnerHeight] = useState();
+  useEffect(() => {
+    setInnerWidth(window.innerWidth);
+    setInnerHeight(window.innerHeight);
+    window.addEventListener("resize", () => {
+      // console.log(window.innerWidth, window.innerHeight);
+      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerHeight);
+    });
+  }, []);
   let profileData = {};
 
   const initContactTypoWeb = {
@@ -182,10 +194,10 @@ const Profile = (props) => {
     };
   } else {
     profileData = {
-      top: initContactTypoWeb.top,
-      left: initContactTypoWeb.left,
-      width: initContactTypoWeb.width,
-      height: initContactTypoWeb.height,
+      top: initContactTypoWeb.top * (innerHeight / 1080),
+      left: initContactTypoWeb.left * (innerWidth / 1920),
+      width: initContactTypoWeb.width * (innerWidth / 1920),
+      height: initContactTypoWeb.height * (innerHeight / 1080),
     };
   }
 

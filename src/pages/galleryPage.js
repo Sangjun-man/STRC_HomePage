@@ -8,7 +8,7 @@ const imgSrcArr1 = imgSrcArr.slice(0, 6);
 const imgSrcArr2 = imgSrcArr.slice(6, 12);
 
 ReactDOM.render(
-  <LeftLine position="relative" />,
+  <LeftLine foot={"gallery"} position="relative" />,
   document.getElementById("gallery-left-line")
 );
 

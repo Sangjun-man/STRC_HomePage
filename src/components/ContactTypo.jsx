@@ -18,6 +18,17 @@ const StyledConTactTypo = styled.div`
   }
 `;
 const ContactTypo = forwardRef((props, ref) => {
+  const [innerWidth, setInnerWidth] = useState();
+  const [innerHeight, setInnerHeight] = useState();
+  useEffect(() => {
+    setInnerWidth(window.innerWidth);
+    setInnerHeight(window.innerHeight);
+    window.addEventListener("resize", () => {
+      // console.log(window.innerWidth, window.innerHeight);
+      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerHeight);
+    });
+  }, []);
   let num = Number(props.num - 1);
   let contactTypoData = {};
   const initContactImg = [contactTypo1, contactTypo2];
@@ -60,10 +71,13 @@ const ContactTypo = forwardRef((props, ref) => {
     };
   } else {
     contactTypoData = {
-      top: initContactTypoWeb[num].top,
-      left: initContactTypoWeb[num].left,
-      width: initContactTypoWeb[num].width,
-      height: initContactTypoWeb[num].height,
+      top: initContactTypoWeb[num].top * (innerHeight / 1080),
+      left: initContactTypoWeb[num].left * (innerWidth / 1920),
+      width: initContactTypoWeb[num].width * (innerWidth / 1920),
+      height:
+        initContactTypoWeb[num].width *
+        (innerWidth / 1920) *
+        (initContactTypoWeb.height / initContactTypoWeb.width),
       src: initContactImg[num],
     };
   }

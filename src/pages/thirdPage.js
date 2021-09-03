@@ -10,7 +10,7 @@ const leftLine = React.createRef();
 const paragraph = React.createRef();
 
 ReactDOM.render(
-  <LeftLine ref={leftLine} />,
+  <LeftLine foot={"about"} ref={leftLine} />,
   document.getElementById("about-left-line")
 );
 ReactDOM.render(
