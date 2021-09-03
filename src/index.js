@@ -10,6 +10,7 @@ import {
   setImgToCanvas,
 } from "./style/canvas";
 import { loop } from "./scrollRaf.js";
+
 const main = () => {
   //정의된 함수들 -> 임포트 해서 쓸수 있나? 있다
   //여기 메인 함수는 asddEventListener 모아두기

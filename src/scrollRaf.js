@@ -14,9 +14,8 @@ let rafId;
 // };
 
 export const loop = () => {
-  layoutData.yoffset += (window.pageYOffset - layoutData.yoffset) * 0.2;
-  //   console.log(window.pageYOffset);
-  console.log(layoutData.yoffset);
+  layoutData.yoffset += (window.pageYOffset - layoutData.yoffset) * 0.1;
+  //   console.log(layoutData.yoffset);
 
   rafId = requestAnimationFrame(loop);
   if (Math.abs(window.pageYOffset - layoutData.yoffset) < 1) {
