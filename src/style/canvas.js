@@ -56,6 +56,7 @@ export const setCanvasTrans = (canvasData) => {
     // console.log("세로");
     canvasData.canvas.style.transform = `scale(${
       heightRatio * 1.01
+      // 오차를위해
     }) translate(${colTransX}px, ${colTransY}px)`;
   } else {
     // console.log("가로");
