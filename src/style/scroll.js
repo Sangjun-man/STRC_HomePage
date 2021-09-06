@@ -41,6 +41,7 @@ export const currentSceneCheck = (sceneInfo, layoutData) => {
 ///////////////////////////////////////
 //스크롤 이동에 사용되는 모든 데이터 값 계산해주는 함수 뭐 없다 걍 모아노은거,
 export const getScrollData = (sceneInfo, layoutData, values) => {
+  // console.log(values);
   const yOfCurrent = layoutData.yoffset - layoutData.prevScrollHeight; //현재 씬의 y스크롤높이 = 전체 y스크롤높이 - 이전씬의 스크롤높이 :
   const scrollHeight = sceneInfo[layoutData.currentScene].scrollHeight; // 현재씬의 스크롤높이
   const sceneScrollRatio = yOfCurrent / scrollHeight; //현재 씬에서 스크롤 이동 비율
@@ -71,13 +72,11 @@ export const endCheck = (
   const scrollData = getScrollData(sceneInfo, layoutData, values);
   const { partScrollRatio, sceneScrollRatio } = scrollData;
   const endValue = values[2].end;
-  // console.log(values, obj, styleType, values);
-  // console.log(obj.style[styleType]);
   console.log(sceneScrollRatio, partScrollRatio, endValue);
   if (sceneScrollRatio > partScrollRatio) {
     obj.style[styleType] = `${endValue}${unit}`;
-    console.log(obj.style[styleType]);
-    console.log(`${endValue}${unit}`);
+    // console.log(obj.style[styleType]);
+    // console.log(`${endValue}${unit}`);
   }
 };
 
@@ -114,8 +113,9 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
 
     rv = startValue + sceneRatio * (endValue - startValue); //전체 씬의 스크롤ratio를 반영해서 적용,
   }
-  console.log("씬 비율 :" + sceneRatio);
-  console.log(rv);
+
+  // console.log("씬 비율 :" + sceneRatio);
+  // console.log(rv);
   //rv는 0~1 사이의 값을 리턴
   return rv;
 };
@@ -135,16 +135,17 @@ export const calcCoordinates = (
   const coordinates = { x: centerX, y: centerY };
   const scrollData = getScrollData(sceneInfo, layoutData, values);
   const {
-    yOfCurrent,
+    yOfCurrent: curY,
     partScrollStart: start,
     partScrollEnd: end,
     partScrollRatio: ratio,
   } = scrollData;
-
+  // console.log(curY, start, end);
   if (
-    yOfCurrent >= start && //시작점을 지나고
-    yOfCurrent <= end //마지막점을 지나지 않아씅면
+    curY >= start && //시작점을 지나고
+    curY <= end //마지막점을 지나지 않아씅면
   ) {
+    // console.log("여기로 오나");
     switch (photoData.type) {
       case "web": {
         let currentDeg = (PI2 / 360) * (60 * index - 90);
@@ -154,7 +155,7 @@ export const calcCoordinates = (
 
         coordinates.x = centerX * (1 - ratio) + LastX * ratio;
         coordinates.y = centerY * (1 - ratio) + LastY * ratio;
-
+        // console.log(coordinates);
         return coordinates;
       }
 
@@ -169,22 +170,23 @@ export const calcCoordinates = (
 
         coordinates.x = centerX * (1 - ratio) + LastX * ratio;
         coordinates.y = centerY * (1 - ratio) + LastY * ratio;
-        // console.log(coordinates);
+        // console.log("지나고있으면");
         return coordinates;
       }
     }
-  } else if (yOfCurrent < start) {
+  } else if (curY < start) {
     //시작점 안지났으면
     coordinates.x = centerX;
     coordinates.y = centerY;
+    // console.log("아직 안지났으면");
     return coordinates;
-  } else if (yOfCurrent > end) {
+  } else if (curY > end) {
     //end 지났으면
     coordinates.x = LastX;
     coordinates.y = LastY;
     return coordinates;
   }
-
+  // console.log(coordinates);
   return coordinates;
 };
 

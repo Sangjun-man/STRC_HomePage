@@ -114,11 +114,12 @@ const Gallery = (props, { imgSrcArr }) => {
   for (let i = start; i < start + 6; i++) {
     // 여기에 Objs와 values 넣어주기,
     sceneInfo[4].objs[`photo${i}`] = document.getElementById(`photo-${i}`);
-    sceneInfo[4].values[`photo${i}`] = [
-      0,
-      1,
-      { start: (0.8 * i) / 12, end: (0.8 * (i + 1)) / 12 },
-    ];
+    // sceneInfo[4].values[`photo${i}`] = [
+    //   0,
+    //   1,
+    //   { start: (0.8 * i) / 12, end: (0.8 * (i + 1)) / 12 },
+    // ];
+    // 밸류 로직을 여기에 두는게 아닌디,,
   }
   for (let i = 0; i < 6; i++) {
     photos.push({

@@ -127,9 +127,13 @@ const linkData = [
   {
     icon: mail,
     text: "qkrkaehf123@gmail.com",
-    href: "http",
+    href: "",
   },
-  { icon: kakao, text: "hyuke23", href: "" },
+  {
+    icon: kakao,
+    text: "hyuke23",
+    href: "http://qr.kakao.com/talk/H1x.hDJ.EgCxFQXnmDxuwmBrVFA-",
+  },
   {
     icon: instagram,
     text: "@__stupidpotato",

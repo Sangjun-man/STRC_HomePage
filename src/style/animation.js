@@ -99,6 +99,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
         //   "left",
         //   "px"
         // );
+        // console.log(values);
         objs[`photo${i}`].style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
@@ -115,7 +116,6 @@ export const playAnimation = (sceneInfo, layoutData) => {
         objs[`photo${i}`].style.left = `${LastX}px`;
         objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
-      console.log("4");
       break;
 
     // for (let i = 0; i < 12; i++) {

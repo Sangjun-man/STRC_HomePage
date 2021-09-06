@@ -87,7 +87,7 @@ const StyledPin = styled.img`
 
 const linkData = {
   insta: "https://www.instagram.com/seoultech_rc/",
-  // kakao:
+  kakao: "http://pf.kakao.com/_DHnN",
 };
 
 const Pin = (props) => {
@@ -114,7 +114,7 @@ const Kakao = (props) => {
   return (
     <>
       <Icons src={kakaoIcon}></Icons>
-      <StyledKakao kakao>
+      <StyledKakao kakao href={linkData.kakao}>
         KAKAOTALK
         <Pin />
       </StyledKakao>
