@@ -114,7 +114,8 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
 
     rv = startValue + sceneRatio * (endValue - startValue); //전체 씬의 스크롤ratio를 반영해서 적용,
   }
-  // console.log(rv);
+  console.log("씬 비율 :" + sceneRatio);
+  console.log(rv);
   //rv는 0~1 사이의 값을 리턴
   return rv;
 };
@@ -161,7 +162,7 @@ export const calcCoordinates = (
         centerX = window.innerWidth / 2; //모바일은 오차가 있어서 center 다시 정렬
         let currentRadius =
           galleryHeight * 0.55 - //제일 처음 사진이 놓일 height위치
-          galleryHeight * 0.07 * (index < 6 ? index : index - 6);
+          galleryHeight * 0.01 * (index < 6 ? index : index - 6);
 
         LastX = centerX;
         LastY = centerY - currentRadius;

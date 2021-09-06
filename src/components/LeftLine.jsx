@@ -70,7 +70,6 @@ const LeftLine = forwardRef((props, ref) => {
     innerWidth: innerWidth,
     height: innerHeight,
   }; //전체 브라우저 크기에서 width와 height 정해짐
-  console.log(props.width);
   return (
     <>
       <StyledLeftLine

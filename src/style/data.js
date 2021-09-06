@@ -21,7 +21,7 @@ export const logoInfo = {
 export const sceneInfo = [
   {
     type: "0",
-    heightNum: 8,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-0"),
@@ -95,7 +95,7 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 20,
+    heightNum: 40,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),

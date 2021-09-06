@@ -106,7 +106,6 @@ const LineMap = () => {
   //가로로좁을때, 세로로좁을때 비율 맞춰주기
   let standardDeviceRatio = 1920 / 1080;
   let currentDeviceRatio = innerWidth / innerHeight;
-  console.log(standardDeviceRatio < currentDeviceRatio);
   const LineMap =
     standardDeviceRatio < currentDeviceRatio
       ? {
@@ -126,7 +125,6 @@ const LineMap = () => {
           width: initLineMap.width * currentLayoutRatio.width,
           height: initLineMap.height * currentLayoutRatio.width,
         };
-  console.log(LineMap);
   //전체 브라우저 크기에서 width와 height 정해짐
 
   const LineMenuScaleRatio = {

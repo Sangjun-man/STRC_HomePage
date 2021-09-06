@@ -115,6 +115,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
         objs[`photo${i}`].style.left = `${LastX}px`;
         objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
+      console.log("4");
       break;
 
     // for (let i = 0; i < 12; i++) {
@@ -160,6 +161,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.typo2Web
         )}px`;
       }
+      console.log("5");
       break;
     case 6:
       break;
