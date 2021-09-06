@@ -1,5 +1,13 @@
+import "./pages/fixedElement";
+import "./pages/firstPage";
+import "./pages/secondPage";
+import "./pages/thirdPage";
+import "./pages/galleryPage";
+import "./pages/contactPage";
+import "./pages/lastPage";
+
 import "./index.css";
-import "./App";
+
 import { currentSceneCheck, setLayout, logoControl } from "./style/scroll";
 import { layoutData, sceneInfo, logoInfo, canvasData } from "./style/data";
 import { playAnimation } from "./style/animation";

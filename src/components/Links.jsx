@@ -7,6 +7,8 @@ import pin from "../asset/svg/Last_Pin.svg";
 
 const StyledContainer = styled.div`
   display: flex;
+  display: -webkit-flex;
+  -webkit-justify-content: end;
   flex-direction: column;
   text-align: center;
   justify-content: end;
@@ -20,6 +22,7 @@ const StyledKakao = styled.a`
   font-size: 5.5vw;
   font-weight: bold;
   margin-bottom: 20vh;
+  text-decoration: none;
   &:hover div img {
     transform: translate(-55%, 50%);
     transition: transform 1s;
@@ -42,6 +45,7 @@ const StyledInsta = styled.a`
   font-family: "arial";
   font-size: 5.5vw;
   font-weight: bold;
+  text-decoration: none;
   margin-bottom: 10vh;
   &:hover div img {
     transform: translate(-55%, 50%);
@@ -81,6 +85,11 @@ const StyledPin = styled.img`
   src: ${(props) => props.src};
 `;
 
+const linkData = {
+  insta: "https://www.instagram.com/seoultech_rc/",
+  // kakao:
+};
+
 const Pin = (props) => {
   return (
     <>
@@ -117,7 +126,7 @@ const Insta = (props) => {
   return (
     <>
       <Icons src={instaIcon}></Icons>
-      <StyledInsta insta>
+      <StyledInsta href={linkData.insta} insta>
         INSTAGRAM
         <Pin />
       </StyledInsta>
@@ -137,6 +146,7 @@ const Links = (props) => {
   return (
     <>
       <StyledContainer>
+        <div style={{ marginTop: "auto" }}></div>
         <Insta />
         <Kakao />
         <Thanks />

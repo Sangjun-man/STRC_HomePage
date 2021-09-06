@@ -1,7 +1,7 @@
-import ReactDOM from "react-dom";
 import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import STRCLineMap from "../asset/svg/STRC_LineMap.svg";
+import { layoutData } from "../style/data";
 
 const StyledLineMap = styled.div`
   position: fixed;
@@ -203,7 +203,10 @@ const LineMap = () => {
           top={Start.top}
           left={Start.left}
           fontSize={Start.fontSize}
-          translate={"0"}
+          scrollTo={{
+            top: 0,
+            behavior: "smooth",
+          }}
         >
           Start
         </LineMapMenu>
@@ -211,6 +214,10 @@ const LineMap = () => {
           top={Community.top}
           left={Community.left}
           fontSize={Community.fontSize}
+          scrollTo={{
+            top: 0,
+            behavior: "smooth",
+          }}
         >
           Community
         </LineMapMenu>
@@ -218,6 +225,10 @@ const LineMap = () => {
           top={Gallery.top}
           left={Gallery.left}
           fontSize={Gallery.fontSize}
+          scrollTo={{
+            top: 0,
+            behavior: "smooth",
+          }}
         >
           Gallery
         </LineMapMenu>
@@ -225,6 +236,10 @@ const LineMap = () => {
           top={Contact.top}
           left={Contact.left}
           fontSize={Contact.fontSize}
+          scrollTo={{
+            top: 0,
+            behavior: "smooth",
+          }}
         >
           Contact
         </LineMapMenu>

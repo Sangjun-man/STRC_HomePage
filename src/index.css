@@ -16,6 +16,7 @@ code {
 @font-face {
   font-family: "arial";
   src: url("./asset/font/Arial_Rounded_Bold.ttf") format("truetype");
+  src: url("./asset/font/Arial_Rounded_Bold.woff") format("woff");
 }
 
 #show-scene-0 #scene-0 > div,

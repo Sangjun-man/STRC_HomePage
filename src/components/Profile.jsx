@@ -19,8 +19,6 @@ const StyledContainer = styled.div`
   /* border: 1px solid; */
 
   @media screen and (max-width: 768px) {
-    /* top: ${(props) => props}px; */
-    /* left: ${(props) => props.left}px; */
     top: ${window.innerHeight / 2}px;
     left: ${window.innerWidth / 2}px;
     width: ${(props) => props.width}px;
@@ -50,6 +48,7 @@ const StyledLink = styled.div`
     width: 100%;
     height: 32px;
     margin-top: 6px;
+    font-size: 10px;
   }
 `;
 const StyledTitle = styled.div`
@@ -126,10 +125,14 @@ const linkData = [
   { icon: kakao, text: "hyuke23", href: "" },
   {
     icon: instagram,
-    text: "@stupidpotato",
+    text: "@__stupidpotato",
     href: "https://instagram.com/__stupidpotato",
   },
 ];
+
+const profileData = {
+  text: "안녕하세요 strc회장 이성혁입니다. \n 모두가 함께 뛰는 그날까지 strc 파이팅~~!!",
+};
 
 const Title = (props) => {
   return (
@@ -142,9 +145,7 @@ const Photo = (props) => {
   return (
     <StyledPhotoContainer flex={4}>
       <StyledPhoto src={photo}></StyledPhoto>
-      <StyledIntroduction>
-        안녕하세요 STRC 회장 이성혁입니다. STRC 화이팅 안녕하세요 STRC 회장
-      </StyledIntroduction>
+      <StyledIntroduction>{profileData.text}</StyledIntroduction>
     </StyledPhotoContainer>
   );
 };

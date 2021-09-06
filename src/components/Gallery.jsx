@@ -51,11 +51,6 @@ const GalleryTypo = (props) => {
     top: centerY,
     left: centerX,
     width: width,
-    //   left: initTypo.left * (innerWidth / 1920),
-    //   top: initTypo.top * (innerHeight / 1080),
-    // width: initTypo.width * (innerWidth / 1920),
-    // height:
-    // initTypo.width * (innerWidth / 1920) * (initTypo.height / initTypo.width),
   }; //전체 브라우저 크기에서 width와 height 정해짐
   return (
     <>

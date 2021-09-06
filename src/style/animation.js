@@ -115,6 +115,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
         objs[`photo${i}`].style.left = `${LastX}px`;
         objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
       }
+      break;
 
     // for (let i = 0; i < 12; i++) {
     //   objs[`photo${i}`].style.opacity = calcCssValues(
@@ -136,9 +137,32 @@ export const playAnimation = (sceneInfo, layoutData) => {
     //   objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
     // }}
     case 5:
+      if (window.innerWidth < 768) {
+        objs.typo1.style.top = `${(objs.typo1.style.top = calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.typo1Mobile
+        ))}px`;
+        objs.typo2.style.top = `${calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.typo2Mobile
+        )}px`;
+      } else {
+        objs.typo1.style.top = `${(objs.typo1.style.top = calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.typo1Web
+        ))}px`;
+        objs.typo2.style.top = `${calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.typo2Web
+        )}px`;
+      }
       break;
     case 6:
-      return console.log(6);
+      break;
     default:
       return console.log("default");
   }

@@ -4,6 +4,7 @@ import contactTypo1 from "../asset/svg/Contact_typo1.svg";
 import contactTypo2 from "../asset/svg/Contact_typo2.svg";
 
 const StyledConTactTypo = styled.div`
+  ${(props) => console.log(props)}
   position: fixed;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
@@ -16,6 +17,9 @@ const StyledConTactTypo = styled.div`
     width: ${(props) => props.width}px;
     height: ${(props) => props.height}px;
   }
+  background-image: url(${(props) => props.src});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 const ContactTypo = forwardRef((props, ref) => {
   const [innerWidth, setInnerWidth] = useState();
@@ -77,7 +81,7 @@ const ContactTypo = forwardRef((props, ref) => {
       height:
         initContactTypoWeb[num].width *
         (innerWidth / 1920) *
-        (initContactTypoWeb.height / initContactTypoWeb.width),
+        (initContactTypoWeb[num].height / initContactTypoWeb[num].width),
       src: initContactImg[num],
     };
   }
@@ -90,8 +94,9 @@ const ContactTypo = forwardRef((props, ref) => {
         left={contactTypoData.left}
         width={contactTypoData.width}
         height={contactTypoData.height}
+        src={contactTypoData.src}
       >
-        <img src={contactTypoData.src} />
+        {/* <img src={contactTypoData.src} /> */}
       </StyledConTactTypo>
     </>
   );

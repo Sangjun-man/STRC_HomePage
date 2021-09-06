@@ -76,8 +76,8 @@ export const sceneInfo = [
     },
     values: {
       blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
-      canvasBlurry: [0, 1000, { start: 0.8, end: 0.95 }],
-      gradient: [0, 1, { start: 0.05, end: 0.15 }],
+      canvasBlurry: [0, 500, { start: 0.75, end: 0.95 }],
+      gradient: [0, 1, { start: 0.05, end: 0.2 }],
       paragraph: [0, 1, { start: 0.4, end: 0.5 }],
       leftLine: [0, 1, { start: 0.15, end: 0.25 }],
     },
@@ -123,8 +123,20 @@ export const sceneInfo = [
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-5"),
+      profile: "",
+      typo1: "",
+      typo2: "",
     },
-    values: {},
+    values: {
+      typo1Web: [-1000, 12, { start: 0.2, end: 0.3 }],
+      typo2Web: [window.innerHeight, 289.5308, { start: 0.5, end: 0.6 }],
+      typo1Mobile: [-600, 60, { start: 0.2, end: 0.3 }],
+      typo2Mobile: [
+        window.innerHeight,
+        window.innerHeight - 364,
+        { start: 0.5, end: 0.6 },
+      ],
+    },
   },
   {
     type: "6",
