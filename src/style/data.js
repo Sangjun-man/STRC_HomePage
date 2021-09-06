@@ -21,7 +21,7 @@ export const logoInfo = {
 export const sceneInfo = [
   {
     type: "0",
-    heightNum: 8,
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-0"),
@@ -95,7 +95,7 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 20,
+    heightNum: 40,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
@@ -111,10 +111,10 @@ export const sceneInfo = [
       photo5: [0, 1, { start: 0.4, end: 0.45 }],
       photo6: [0, 1, { start: 0.55, end: 0.6 }],
       photo7: [0, 1, { start: 0.6, end: 0.65 }],
-      photo8: [0, 1, { start: 0.7, end: 0.75 }],
+      photo8: [0, 1, { start: 0.65, end: 0.7 }],
       photo9: [0, 1, { start: 0.75, end: 0.8 }],
-      photo10: [0, 1, { start: 0.85, end: 0.9 }],
-      photo11: [0, 1, { start: 0.95, end: 1 }],
+      photo10: [0, 1, { start: 0.8, end: 0.85 }],
+      photo11: [0, 1, { start: 0.85, end: 0.9 }],
     },
   },
   {

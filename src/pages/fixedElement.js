@@ -6,10 +6,12 @@ import { logoInfo } from "../style/data";
 const container = React.createRef();
 const whiteLogoRef = React.createRef();
 const colorLogoRef = React.createRef();
-// console.log(container, whiteLogoRef, colorLogoRef);
+// const scrollArrow = React.createRef();
+
 const refs = [container, whiteLogoRef, colorLogoRef];
 
 ReactDOM.render(<TopLogo ref={refs} />, document.getElementById("top-logo"));
+// ReactDOM.render(<ScrollArrow ref={scrolArrow} />, document.getElementById("scroll-Arrow"));
 
 logoInfo.topLogo.objs.container = container.current;
 logoInfo.topLogo.objs.whiteLogo = whiteLogoRef.current;

@@ -46,8 +46,12 @@ const main = () => {
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
   });
   window.addEventListener("scroll", () => {
-    requestAnimationFrame(loop);
-    // layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
+    if (window.innerWidth < 500) {
+      layoutData.yoffset = window.pageYOffset; //현재 y오프셋 저장
+    } else {
+      requestAnimationFrame(loop);
+    }
+
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크
     playAnimation(sceneInfo, layoutData);
     logoControl(logoInfo, layoutData);

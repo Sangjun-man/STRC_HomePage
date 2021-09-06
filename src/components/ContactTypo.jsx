@@ -4,7 +4,6 @@ import contactTypo1 from "../asset/svg/Contact_typo1.svg";
 import contactTypo2 from "../asset/svg/Contact_typo2.svg";
 
 const StyledConTactTypo = styled.div`
-  ${(props) => console.log(props)}
   position: fixed;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;

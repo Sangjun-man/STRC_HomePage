@@ -99,6 +99,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
         //   "left",
         //   "px"
         // );
+        // console.log(values);
         objs[`photo${i}`].style.opacity = calcCssValues(
           sceneInfo,
           layoutData,
@@ -160,6 +161,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.typo2Web
         )}px`;
       }
+      console.log("5");
       break;
     case 6:
       break;

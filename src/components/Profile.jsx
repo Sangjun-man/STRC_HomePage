@@ -18,6 +18,13 @@ const StyledContainer = styled.div`
   /* background-color: #15100c; */
   /* border: 1px solid; */
 
+  @media screen and (max-width: 769px) and (min-width: 400px) {
+    top: ${window.innerHeight / 2}px;
+    left: ${window.innerWidth / 2}px;
+    width: ${(props) => props.width}px;
+    height: ${(props) => props.height}px;
+  }
+
   @media screen and (max-width: 768px) {
     top: ${window.innerHeight / 2}px;
     left: ${window.innerWidth / 2}px;
@@ -111,7 +118,7 @@ const StyledTextStyle = styled.a`
   justify-content: center;
   letter-spacing: 2px;
   @media screen and (max-width: 768px) {
-    font-size: 1px;
+    font-size: 1vw;
     letter-spacing: 0px;
   }
 `;
@@ -120,9 +127,13 @@ const linkData = [
   {
     icon: mail,
     text: "qkrkaehf123@gmail.com",
-    href: "http",
+    href: "",
   },
-  { icon: kakao, text: "hyuke23", href: "" },
+  {
+    icon: kakao,
+    text: "hyuke23",
+    href: "http://qr.kakao.com/talk/H1x.hDJ.EgCxFQXnmDxuwmBrVFA-",
+  },
   {
     icon: instagram,
     text: "@__stupidpotato",
@@ -131,7 +142,7 @@ const linkData = [
 ];
 
 const profileData = {
-  text: "안녕하세요 strc회장 이성혁입니다. \n 모두가 함께 뛰는 그날까지 strc 파이팅~~!!",
+  text: "안녕하세요 strc회장 이성혁입니다. \n 모두가 함께 뛰는 그날까지 \n strc 파이팅~~!!",
 };
 
 const Title = (props) => {
