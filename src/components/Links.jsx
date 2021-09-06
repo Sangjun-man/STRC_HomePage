@@ -87,7 +87,7 @@ const StyledPin = styled.img`
 
 const linkData = {
   insta: "https://www.instagram.com/seoultech_rc/",
-  kakao: "http://pf.kakao.com/_DHnN",
+  kakao: "http://pf.kakao.com/_DHnNj",
 };
 
 const Pin = (props) => {
