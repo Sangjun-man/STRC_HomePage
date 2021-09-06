@@ -4,7 +4,7 @@ import kakao from "../asset/svg/Contact_KakaoIcon.svg";
 import instagram from "../asset/svg/Contact_InstaIcon.svg";
 import mail from "../asset/svg/Contact_Mail.svg";
 import title from "../asset/svg/Contact_Title.svg";
-import photo from "../asset/svg/Contact_Photo.svg";
+import photo from "../asset/svg/Contact_Photo.png";
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -40,7 +40,8 @@ const StyledLink = styled.div`
   width: 100%;
   height: 7vh;
   margin-top: 12px;
-  background-color: gray;
+  background-color: white;
+  opacity: 0.8;
   /* border: 1px solid white; */
   border-radius: 3rem;
   /* background-color:
@@ -61,6 +62,7 @@ const StyledPhoto = styled.div`
   height: 30vh;
   margin-top: 30px;
   background-image: url(${(props) => props.src});
+  background-size: contain;
   background-repeat: no-repeat;
   @media screen and (max-width: 768px) {
     width: 150px;
@@ -88,42 +90,44 @@ const StyledIconStyle = styled.div`
   left: 5vh;
   width: 5vh;
   height: 5vh;
+  /* margin-left: 5vh; */
   background-image: url(${(props) => props.icon});
   background-repeat: no-repeat;
-  flex: 1;
   @media screen and (max-width: 768px) {
     left: 15px;
     width: 20px;
     height: 20px;
   }
 `;
-const StyledTextStyle = styled.div`
+const StyledTextStyle = styled.a`
   display: flex;
   color: black;
+  width: 100%;
+  /* margin: 0 auto; */
   text-decoration: none;
   text-align: center;
   font-size: 1.2rem;
+  font-style: arial;
+
   justify-content: center;
   letter-spacing: 2px;
   @media screen and (max-width: 768px) {
     font-size: 1px;
     letter-spacing: 0px;
   }
-
-  flex: 3;
 `;
 
 const linkData = [
   {
     icon: mail,
-    text: "tmxl17@naver.com",
+    text: "qkrkaehf123@gmail.com",
     href: "http",
   },
-  { icon: kakao, text: "카카오톡 아이디", href: "" },
+  { icon: kakao, text: "hyuke23", href: "" },
   {
     icon: instagram,
     text: "@stupidpotato",
-    href: "",
+    href: "https://instagram.com/__stupidpotato",
   },
 ];
 
@@ -149,10 +153,8 @@ const Link = ({ text, icon, href }) => {
   return (
     <>
       <StyledLink>
-        <StyledTextStyle href={href}>
-          <StyledIconStyle icon={icon} />
-          {text}
-        </StyledTextStyle>
+        <StyledIconStyle icon={icon} />
+        <StyledTextStyle href={href}>{text}</StyledTextStyle>
       </StyledLink>
     </>
   );

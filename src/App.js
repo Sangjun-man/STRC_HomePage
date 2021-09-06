@@ -4,6 +4,7 @@ import "./pages/secondPage";
 import "./pages/thirdPage";
 import "./pages/galleryPage";
 import "./pages/contactPage";
+import "./pages/lastPage";
 
 // firstPage();
 // secondPage();
