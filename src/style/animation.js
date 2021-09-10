@@ -96,7 +96,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
     case 4:
       // let { centerX, centerY, radius } = values.photoData.basisCoordinates;
       for (let i = 0; i < 12; i++) {
-        if (onAirCheck(sr, values[`photo${i}`])) {
+        if (onAirCheck(sr, values[`photo${i}`], true)) {
           // endCheck(
           //   sceneInfo,
           //   layoutData,
@@ -185,12 +185,24 @@ export const playAnimation = (sceneInfo, layoutData) => {
   }
 };
 
-const onAirCheck = (sr, value = [0, 0, { start: 0, end: 0 }]) => {
-  if (sr < value[2].start) {
-    return false;
-  } else if (value[2].start < sr && sr < value[2].end) {
-    return true;
+const onAirCheck = (sr, value = [0, 0, { start: 0, end: 0 }], stretch) => {
+  console.log(stretch);
+  if (stretch == true) {
+    if (sr < value[2].start - 0.1) {
+      return false;
+    } else if (value[2].start - 0.1 < sr && sr < value[2].end + 0.1) {
+      console.log(sr);
+      return true;
+    } else {
+      return false;
+    }
   } else {
-    return false;
+    if (sr < value[2].start) {
+      return false;
+    } else if (value[2].start < sr && sr < value[2].end) {
+      return true;
+    } else {
+      return false;
+    }
   }
 };

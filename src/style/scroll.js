@@ -75,7 +75,7 @@ export const endCheck = (
   const scrollData = getScrollData(sceneInfo, layoutData, values);
   const { partScrollRatio, sceneScrollRatio } = scrollData;
   const endValue = values[2].end;
-  console.log(sceneScrollRatio, partScrollRatio, endValue);
+  // console.log(sceneScrollRatio, partScrollRatio, endValue);
   if (sceneScrollRatio > partScrollRatio) {
     obj.style[styleType] = `${endValue}${unit}`;
     // console.log(obj.style[styleType]);
@@ -121,7 +121,7 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   //rv는 0~1 사이의 값을 리턴
 
   rv = rv.toFixed(4);
-  console.log(rv);
+  // console.log(rv);
   return rv;
 };
 
@@ -179,7 +179,7 @@ export const calcCoordinates = (
         coordinates.x = (centerX * (1 - ratio) + LastX * ratio).toFixed(4);
         coordinates.y = (centerY * (1 - ratio) + LastY * ratio).toFixed(4);
         // console.log("지나고있으면");
-        console.log(coordinates);
+        // console.log(coordinates);
 
         return coordinates;
       }
@@ -196,11 +196,11 @@ export const calcCoordinates = (
     //end 지났으면
     coordinates.x = LastX;
     coordinates.y = LastY;
-    console.log(coordinates);
+    // console.log(coordinates);
     return coordinates;
     // break;
   }
-  console.log(coordinates);
+  // console.log(coordinates);
 
   return coordinates;
 };
