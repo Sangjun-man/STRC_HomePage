@@ -26,14 +26,6 @@ const STRCLogoStyle = {
 };
 
 const TopLogo = React.forwardRef((props, ref) => {
-  // console.log(ref);
-  // const container = useRef();
-  // const whiteLogoRef = useRef();
-  // const colorLogoRef = useRef();
-  // console.log(container, colorLogoRef, whiteLogoRef);
-  // logoInfo.topLogo.objs.container = container.current;
-  // logoInfo.topLogo.objs.whiteLogo = whiteLogoRef.current;
-  // logoInfo.topLogo.objs.colorLogo = colorLogoRef.current;
   return (
     <>
       <StyledTopLogo

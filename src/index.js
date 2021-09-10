@@ -34,10 +34,10 @@ const main = () => {
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
     setTimeout(
       window.scrollTo({
-        top: sceneInfo[layoutData.currentScene].scrollHeight / 2,
+        top: 10,
         behavior: "smooth",
       }),
-      2000
+      10
     );
   });
   window.addEventListener("resize", () => {
@@ -70,10 +70,10 @@ const Mobilemain = () => {
     drawBackgroundCanvas(sceneInfo, canvasData, layoutData);
     setTimeout(
       window.scrollTo({
-        top: sceneInfo[layoutData.currentScene].scrollHeight / 2,
+        top: 10,
         behavior: "smooth",
       }),
-      2000
+      10
     );
   });
   window.addEventListener("resize", () => {
@@ -108,6 +108,7 @@ function isMobile() {
 
 setImgToCanvas(canvasData, BGimgSrcArr);
 setCanvasLayout(canvasData);
+playAnimation(sceneInfo, layoutData);
 if (isMobile()) {
   Mobilemain();
 } else {

@@ -28,6 +28,7 @@ export const sceneInfo = [
       firstLogo: document.querySelector("#first-page-logo"),
       sceneFirst: document.querySelector("#scene-0-first"),
       sceneNext: document.querySelector("#scene-0-next"),
+      scrollDownPlz: "",
     },
     values: {
       firstLogo: [
@@ -44,6 +45,7 @@ export const sceneInfo = [
       ],
       rectMove: { start: 0, end: 0.2 },
       blendValue: { direction: "column", type: "up", start: 0.75, end: 1 },
+      scrollDownPlz: [1, 0, { start: 0, end: 0.25 }],
 
       //drawCanvas에서 같이 그려주면 됨,
     },
@@ -95,7 +97,7 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 80,
+    heightNum: 40,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
@@ -103,18 +105,18 @@ export const sceneInfo = [
     values: {
       // animation.js에서 여기 데이터를 사용한다.
       photoData: {},
-      photo0: [0, 1, { start: 0.0, end: 0.08 }],
-      photo1: [0, 1, { start: 0.08, end: 0.16 }],
-      photo2: [0, 1, { start: 0.16, end: 0.24 }],
-      photo3: [0, 1, { start: 0.24, end: 0.32 }],
-      photo4: [0, 1, { start: 0.32, end: 0.4 }],
-      photo5: [0, 1, { start: 0.4, end: 0.48 }],
-      photo6: [0, 1, { start: 0.48, end: 0.56 }],
-      photo7: [0, 1, { start: 0.56, end: 0.64 }],
-      photo8: [0, 1, { start: 0.64, end: 0.72 }],
-      photo9: [0, 1, { start: 0.72, end: 0.8 }],
-      photo10: [0, 1, { start: 0.8, end: 0.88 }],
-      photo11: [0, 1, { start: 0.88, end: 0.96 }],
+      photo0: [0, 1, { start: 0.0, end: 0.07 }],
+      photo1: [0, 1, { start: 0.08, end: 0.15 }],
+      photo2: [0, 1, { start: 0.16, end: 0.23 }],
+      photo3: [0, 1, { start: 0.24, end: 0.31 }],
+      photo4: [0, 1, { start: 0.32, end: 0.39 }],
+      photo5: [0, 1, { start: 0.4, end: 0.47 }],
+      photo6: [0, 1, { start: 0.48, end: 0.55 }],
+      photo7: [0, 1, { start: 0.56, end: 0.63 }],
+      photo8: [0, 1, { start: 0.64, end: 0.71 }],
+      photo9: [0, 1, { start: 0.72, end: 0.79 }],
+      photo10: [0, 1, { start: 0.8, end: 0.87 }],
+      photo11: [0, 1, { start: 0.88, end: 0.95 }],
     },
   },
   {

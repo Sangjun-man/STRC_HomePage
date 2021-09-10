@@ -36,6 +36,12 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.firstLogo[1]
         )}px`;
       }
+      // console.log(objs.scrollDownPlz);
+      objs.scrollDownPlz.style.opacity = calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.scrollDownPlz
+      );
       // objs.sceneNext.style.opacity = calcCssValues(
       //   sceneInfo,
       //   layoutData,
