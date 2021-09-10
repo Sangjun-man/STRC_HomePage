@@ -295,7 +295,7 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
   let partScrollEnd = values.end * scrollHeight; // 끝나는스크롤위치
   let partYoffset = yOfCurrent - partScrollStart;
   let partScrollHeight = partScrollEnd - partScrollStart; //애니메이션이 부분 진행되는 스크롤 길이
-  let partScrollRatio = partYoffset / partScrollHeight;
+  let partScrollRatio = (partYoffset / partScrollHeight).toFixed(4);
 
   if (
     yOfCurrent >= partScrollStart && //시작점을 지나고
@@ -311,11 +311,11 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
               sx: 0,
               sy: 0, //잘리는 위치
               sWidth: width,
-              sHeight: (1 - partScrollRatio) * height,
+              sHeight: ((1 - partScrollRatio) * height).toFixed(4),
               dx: 0,
               dy: 0,
               dWidth: width,
-              dHeight: (1 - partScrollRatio) * height,
+              dHeight: ((1 - partScrollRatio) * height).toFixed(4),
               partScrollRatio: partScrollRatio,
 
               // sx: 0,
@@ -327,6 +327,7 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
               // dWidth: width,
               // dHeight: partScrollRatio * height,
             };
+            console.log(rv);
             return rv;
           } //전체 씬의 스크롤ratio를 반영해서 적용,
         }
@@ -337,29 +338,31 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
             let rv = {
               sx: 0,
               sy: 0,
-              sWidth: (1 - partScrollRatio) * width,
+              sWidth: ((1 - partScrollRatio) * width).toFixed(4),
               sHeight: height,
               dx: 0,
               dy: 0,
-              dWidth: (1 - partScrollRatio) * width,
+              dWidth: ((1 - partScrollRatio) * width).toFixed(4),
               dHeight: height,
               partScrollRatio: partScrollRatio,
             };
+            console.log(rv);
 
             return rv;
           } //전체 씬의 스크롤ratio를 반영해서 적용,
           case "right": {
             let rv = {
-              sx: partScrollRatio * width,
+              sx: (partScrollRatio * width).toFixed(4),
               sy: 0,
-              sWidth: (1 - partScrollRatio) * width,
+              sWidth: ((1 - partScrollRatio) * width).toFixed(4),
               sHeight: height,
-              dx: partScrollRatio * width,
+              dx: (partScrollRatio * width).toFixed(4),
               dy: 0,
-              dWidth: (1 - partScrollRatio) * width,
+              dWidth: ((1 - partScrollRatio) * width).toFixed(4),
               dHeight: height,
               partScrollRatio: partScrollRatio,
             };
+            console.log(rv);
 
             return rv;
           }
@@ -368,9 +371,13 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
     }
   } else if (yOfCurrent < partScrollStart) {
     //시작점 안지났으면
+    console.log(rv);
+
     return rv;
   } else if (yOfCurrent > partScrollEnd) {
     //end 지났으면
+    console.log(rv);
+
     return rv;
   }
 };

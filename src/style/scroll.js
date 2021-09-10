@@ -152,8 +152,11 @@ export const calcCoordinates = (
       case "web": {
         let currentDeg = (PI2 / 360) * (60 * index - 90);
 
-        LastX = centerX + radius * Math.cos(currentDeg);
-        LastY = centerY + radius * galleryLayoutRatio * Math.sin(currentDeg);
+        LastX = (centerX + radius * Math.cos(currentDeg)).toFixed(4);
+        LastY = (
+          centerY +
+          radius * galleryLayoutRatio * Math.sin(currentDeg)
+        ).toFixed(4);
 
         coordinates.x = (centerX * (1 - ratio) + LastX * ratio).toFixed(4);
         coordinates.y = (centerY * (1 - ratio) + LastY * ratio).toFixed(4);
@@ -167,8 +170,8 @@ export const calcCoordinates = (
           galleryHeight * 0.55 - //제일 처음 사진이 놓일 height위치
           galleryHeight * 0.01 * (index < 6 ? index : index - 6);
 
-        LastX = centerX;
-        LastY = centerY - currentRadius;
+        LastX = centerX.toFixed(4);
+        LastY = (centerY - currentRadius).toFixed(4);
 
         coordinates.x = (centerX * (1 - ratio) + LastX * ratio).toFixed(4);
         coordinates.y = (centerY * (1 - ratio) + LastY * ratio).toFixed(4);
@@ -180,11 +183,11 @@ export const calcCoordinates = (
     }
   } else if (curY < start) {
     // //시작점 안지났으면
-    // coordinates.x = centerX.toFixed(4);
-    // coordinates.y = centerY.toFixed(4);
+    coordinates.x = centerX.toFixed(4);
+    coordinates.y = centerY.toFixed(4);
     // // console.log("아직 안지났으면");
     // console.log(coordinates);
-    // return coordinates;
+    return coordinates;
     // break;
   } else if (curY > end) {
     //end 지났으면
@@ -194,6 +197,7 @@ export const calcCoordinates = (
     return coordinates;
     // break;
   }
+  console.log(coordinates);
 
   return coordinates;
 };
