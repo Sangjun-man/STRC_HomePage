@@ -95,7 +95,7 @@ export const sceneInfo = [
   },
   {
     type: "4",
-    heightNum: 40,
+    heightNum: 80,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-4"),
@@ -103,18 +103,18 @@ export const sceneInfo = [
     values: {
       // animation.js에서 여기 데이터를 사용한다.
       photoData: {},
-      photo0: [0, 1, { start: 0.1, end: 0.15 }],
-      photo1: [0, 1, { start: 0.15, end: 0.2 }],
-      photo2: [0, 1, { start: 0.2, end: 0.25 }],
-      photo3: [0, 1, { start: 0.3, end: 0.35 }],
-      photo4: [0, 1, { start: 0.35, end: 0.4 }],
-      photo5: [0, 1, { start: 0.4, end: 0.45 }],
-      photo6: [0, 1, { start: 0.55, end: 0.6 }],
-      photo7: [0, 1, { start: 0.6, end: 0.65 }],
-      photo8: [0, 1, { start: 0.65, end: 0.7 }],
-      photo9: [0, 1, { start: 0.75, end: 0.8 }],
-      photo10: [0, 1, { start: 0.8, end: 0.85 }],
-      photo11: [0, 1, { start: 0.85, end: 0.9 }],
+      photo0: [0, 1, { start: 0.0, end: 0.08 }],
+      photo1: [0, 1, { start: 0.08, end: 0.16 }],
+      photo2: [0, 1, { start: 0.16, end: 0.24 }],
+      photo3: [0, 1, { start: 0.24, end: 0.32 }],
+      photo4: [0, 1, { start: 0.32, end: 0.4 }],
+      photo5: [0, 1, { start: 0.4, end: 0.48 }],
+      photo6: [0, 1, { start: 0.48, end: 0.56 }],
+      photo7: [0, 1, { start: 0.56, end: 0.64 }],
+      photo8: [0, 1, { start: 0.64, end: 0.72 }],
+      photo9: [0, 1, { start: 0.72, end: 0.8 }],
+      photo10: [0, 1, { start: 0.8, end: 0.88 }],
+      photo11: [0, 1, { start: 0.88, end: 0.96 }],
     },
   },
   {
@@ -130,13 +130,13 @@ export const sceneInfo = [
     values: {
       typo1Web: [-1000, 12, { start: 0.2, end: 0.3 }],
       typo2Web: [window.innerHeight, 289.5308, { start: 0.5, end: 0.6 }],
-      typo1Mobile: [-600, 60, { start: 0.2, end: 0.3 }],
+      typo1Mobile: [-600, 60, { start: 0.1, end: 0.2 }],
       typo2Mobile: [
         window.innerHeight,
         window.innerHeight - 364,
-        { start: 0.5, end: 0.6 },
+        { start: 0.3, end: 0.4 },
       ],
-      profile: [1, 0, { start: 0.7, end: 0.9 }],
+      profile: [1, 0, { start: 0.7, end: 1 }],
     },
   },
   {
