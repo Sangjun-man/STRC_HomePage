@@ -2,12 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const StyledScrollDown = styled.div`
-  ${(props) => console.log(props)}
   display: block;
   position: fixed;
   top: 0;
   left: 50%;
-  width: 5vw;
+  width: 6vh;
   height: 100%;
   font-size: 6.3vh;
   color: black;
