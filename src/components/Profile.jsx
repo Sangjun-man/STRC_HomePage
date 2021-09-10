@@ -118,7 +118,7 @@ const StyledTextStyle = styled.a`
   justify-content: center;
   letter-spacing: 2px;
   @media screen and (max-width: 768px) {
-    font-size: 1vw;
+    font-size: 10px;
     letter-spacing: 0px;
   }
 `;

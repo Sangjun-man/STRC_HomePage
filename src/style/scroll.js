@@ -105,7 +105,6 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
       rv = startValue; //시작밸류
     } else if (nowY > end) {
       //end 지났으면
-
       rv = endValue; //끝밸류
     }
   } else {
@@ -117,6 +116,9 @@ export const calcCssValues = (sceneInfo, layoutData, values) => {
   // console.log("씬 비율 :" + sceneRatio);
   // console.log(rv);
   //rv는 0~1 사이의 값을 리턴
+
+  rv = rv.toFixed(4);
+  console.log(rv);
   return rv;
 };
 
@@ -153,9 +155,9 @@ export const calcCoordinates = (
         LastX = centerX + radius * Math.cos(currentDeg);
         LastY = centerY + radius * galleryLayoutRatio * Math.sin(currentDeg);
 
-        coordinates.x = centerX * (1 - ratio) + LastX * ratio;
-        coordinates.y = centerY * (1 - ratio) + LastY * ratio;
-        // console.log(coordinates);
+        coordinates.x = (centerX * (1 - ratio) + LastX * ratio).toFixed(4);
+        coordinates.y = (centerY * (1 - ratio) + LastY * ratio).toFixed(4);
+        console.log(coordinates);
         return coordinates;
       }
 
@@ -168,25 +170,31 @@ export const calcCoordinates = (
         LastX = centerX;
         LastY = centerY - currentRadius;
 
-        coordinates.x = centerX * (1 - ratio) + LastX * ratio;
-        coordinates.y = centerY * (1 - ratio) + LastY * ratio;
+        coordinates.x = (centerX * (1 - ratio) + LastX * ratio).toFixed(4);
+        coordinates.y = (centerY * (1 - ratio) + LastY * ratio).toFixed(4);
         // console.log("지나고있으면");
+        console.log(coordinates);
+
         return coordinates;
       }
     }
   } else if (curY < start) {
-    //시작점 안지났으면
-    coordinates.x = centerX;
-    coordinates.y = centerY;
-    // console.log("아직 안지났으면");
-    return coordinates;
+    // //시작점 안지났으면
+    // coordinates.x = centerX.toFixed(4);
+    // coordinates.y = centerY.toFixed(4);
+    // // console.log("아직 안지났으면");
+    // console.log(coordinates);
+    // return coordinates;
+    // break;
   } else if (curY > end) {
     //end 지났으면
     coordinates.x = LastX;
     coordinates.y = LastY;
+    console.log(coordinates);
     return coordinates;
+    // break;
   }
-  // console.log(coordinates);
+
   return coordinates;
 };
 
