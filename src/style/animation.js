@@ -1,51 +1,64 @@
-import { calcCoordinates, calcCssValues, endCheck } from "./scroll";
+import { calcCoordinates, calcCssValues } from "./scroll";
 
 export const playAnimation = (sceneInfo, layoutData) => {
   //씬넘버 온 - 케이스를 나눈다
   //현재 씬에서 스크롤 비율값을 기준으로 이벤트 발생시킬지말지 결정
   //obj 안의 쿼리셀렉터 로 돔 설정 밸류값으로 어디서 이벤트 작동시킬지 확인
   //실제 css값 변화는 calcCssValue 함수 사용
+
   const currentScene = layoutData.currentScene;
   // console.log(layoutData.currentScene);
-  const scrollRatio =
+  const sr = (
     (layoutData.yoffset - layoutData.prevScrollHeight) /
-    sceneInfo[currentScene].scrollHeight;
+    sceneInfo[currentScene].scrollHeight
+  ).toFixed(5);
+  //sr = scrollRatio;
+
   const objs = sceneInfo[currentScene].objs;
   const values = sceneInfo[currentScene].values;
   const canvas = sceneInfo[2].objs.canvas;
 
   switch (layoutData.currentScene) {
     case 0:
-      objs.firstLogo.style.opacity = calcCssValues(
-        sceneInfo,
-        layoutData,
-        values.firstLogo[0]
-      );
+      // console.log(sr);
+      if (onAirCheck(sr, values.firstLogo[0])) {
+        objs.firstLogo.style.opacity = calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.firstLogo[0]
+        );
+      }
       // 이미지 옮기기 실패,, -> forwardRef로 성공
-      objs.firstLogoImg.style.top = `${calcCssValues(
-        sceneInfo,
-        layoutData,
-        values.firstLogo[1]
-      )}px`;
+      if (onAirCheck(sr, values.firstLogo[1])) {
+        objs.firstLogoImg.style.top = `${calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.firstLogo[1]
+        )}px`;
+      }
       // objs.sceneNext.style.opacity = calcCssValues(
       //   sceneInfo,
       //   layoutData,
-      //   scrollRatio <= values.sceneNext[0][2].end
+      //   sr <= values.sceneNext[0][2].end
       //     ? values.sceneNext[0]
       //     : values.sceneNext[1]
       // );
       break;
     case 1:
+      // console.log(sr);
+
       objs.lineMap.style.opacity = calcCssValues(
         sceneInfo,
         layoutData,
-        scrollRatio <= values.lineMapOpacity[0][2].end
+        sr <= values.lineMapOpacity[0][2].end
           ? values.lineMapOpacity[0]
           : values.lineMapOpacity[1]
       );
 
       break;
     case 2:
+      console.log(sr);
+
       if (window.innerWidth < 768) {
         objs.gradient.style.top = `${
           80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
@@ -83,38 +96,40 @@ export const playAnimation = (sceneInfo, layoutData) => {
     case 4:
       // let { centerX, centerY, radius } = values.photoData.basisCoordinates;
       for (let i = 0; i < 12; i++) {
-        // endCheck(
-        //   sceneInfo,
-        //   layoutData,
-        //   values[`photo${i}`],
-        //   objs[`photo${i}`],
-        //   "top",
-        //   "px"
-        // );
-        // endCheck(
-        //   sceneInfo,
-        //   layoutData,
-        //   values[`photo${i}`],
-        //   objs[`photo${i}`],
-        //   "left",
-        //   "px"
-        // );
-        // console.log(values);
-        objs[`photo${i}`].style.opacity = calcCssValues(
-          sceneInfo,
-          layoutData,
-          values[`photo${i}`]
-        );
-        let { x: LastX, y: LastY } = calcCoordinates(
-          sceneInfo,
-          layoutData,
-          values[`photo${i}`],
-          values.photoData,
-          i
-        );
-        objs[`photo${i}`].style.top = `${LastY}px`;
-        objs[`photo${i}`].style.left = `${LastX}px`;
-        objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
+        if (onAirCheck(sr, values[`photo${i}`])) {
+          // endCheck(
+          //   sceneInfo,
+          //   layoutData,
+          //   values[`photo${i}`],
+          //   objs[`photo${i}`],
+          //   "top",
+          //   "px"
+          // );
+          // endCheck(
+          //   sceneInfo,
+          //   layoutData,
+          //   values[`photo${i}`],
+          //   objs[`photo${i}`],
+          //   "left",
+          //   "px"
+          // );
+          // console.log(values);
+          objs[`photo${i}`].style.opacity = calcCssValues(
+            sceneInfo,
+            layoutData,
+            values[`photo${i}`]
+          );
+          let { x: LastX, y: LastY } = calcCoordinates(
+            sceneInfo,
+            layoutData,
+            values[`photo${i}`],
+            values.photoData,
+            i
+          );
+          objs[`photo${i}`].style.top = `${LastY}px`;
+          objs[`photo${i}`].style.left = `${LastX}px`;
+          objs[`photo${i}`].style.transform = `translate(-50%,-50%)`;
+        }
       }
       break;
 
@@ -167,5 +182,15 @@ export const playAnimation = (sceneInfo, layoutData) => {
       break;
     default:
       return console.log("default");
+  }
+};
+
+const onAirCheck = (sr, value = [0, 0, { start: 0, end: 0 }]) => {
+  if (sr < value[2].start) {
+    return false;
+  } else if (value[2].start < sr && sr < value[2].end) {
+    return true;
+  } else {
+    return false;
   }
 };
