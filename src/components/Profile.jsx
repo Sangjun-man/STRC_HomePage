@@ -93,9 +93,9 @@ const StyledIntroduction = styled.div`
 
 const StyledIconStyle = styled.div`
   position: absolute;
-  left: 5vh;
-  width: 5vh;
-  height: 5vh;
+  left: 3vw;
+  width: 3vw;
+  height: 3vw;
   /* margin-left: 5vh; */
   background-image: url(${(props) => props.icon});
   background-repeat: no-repeat;
@@ -112,11 +112,15 @@ const StyledTextStyle = styled.a`
   /* margin: 0 auto; */
   text-decoration: none;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   font-style: arial;
 
   justify-content: center;
   letter-spacing: 2px;
+  @media screen and (max-width: 1440px) and (min-width: 769px) {
+    /* text-align: right; */
+    padding-left: 4vw;
+  }
   @media screen and (max-width: 768px) {
     font-size: 10px;
     letter-spacing: 0px;

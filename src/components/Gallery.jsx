@@ -18,14 +18,14 @@ const StyledGalleryTypo = styled.div`
   }
 `;
 
-const StyledGalleryPhotoWeb = styled.div`
+const StyledGalleryPhoto = styled.div`
   position: fixed;
   font-size: 0px;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
-
+  opacity: 0;
   background-color: ${"#15172C"};
   background-image: url(${(props) => props.imgSrc});
   background-size: 108%;
@@ -165,14 +165,14 @@ const Gallery = (props, { imgSrcArr }) => {
           width={photoData.photosLayoutData.width}
         ></GalleryTypo>
         {photos.map((photo) => (
-          <StyledGalleryPhotoWeb
+          <StyledGalleryPhoto
             id={photo.id}
             top={photoData.basisCoordinates.centerY}
             left={photoData.basisCoordinates.centerX}
             width={photoData.photosLayoutData.width}
             height={photoData.photosLayoutData.height}
             imgSrc={photo.imgSrc}
-          ></StyledGalleryPhotoWeb>
+          ></StyledGalleryPhoto>
         ))}
       </div>
     </>

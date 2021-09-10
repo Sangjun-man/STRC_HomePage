@@ -57,7 +57,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
 
       break;
     case 2:
-      console.log(sr);
+      // console.log(sr);
 
       if (window.innerWidth < 768) {
         objs.gradient.style.top = `${
@@ -176,7 +176,7 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.typo2Web
         )}px`;
       }
-      console.log("5");
+      // console.log("5");
       break;
     case 6:
       break;
