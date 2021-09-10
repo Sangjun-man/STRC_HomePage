@@ -66,7 +66,7 @@ export const sceneInfo = [
   },
   {
     type: "2",
-    heightNum: 8,
+    heightNum: 10,
     scrollHeight: 0,
     objs: {
       canvas: document.querySelector("#background-canvas"),
@@ -75,16 +75,16 @@ export const sceneInfo = [
       paragraph: "",
     },
     values: {
-      blendValue: { direction: "row", type: "right", start: 0.7, end: 1 },
+      blendValue: { direction: "row", type: "right", start: 0.8, end: 1 },
       canvasBlurry: [0, 500, { start: 0.75, end: 0.95 }],
       gradient: [0, 1, { start: 0.05, end: 0.2 }],
-      paragraph: [0, 1, { start: 0.4, end: 0.5 }],
+      paragraph: [0, 1, { start: 0.3, end: 0.6 }],
       leftLine: [0, 1, { start: 0.15, end: 0.25 }],
     },
   },
   {
-    type: "3",
-    heightNum: 1,
+    type: "4",
+    heightNum: 5,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-3"),

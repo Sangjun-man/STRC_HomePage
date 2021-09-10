@@ -35,20 +35,20 @@ export const setCanvasLayout = (canvasData) => {
 export const setCanvasTrans = (canvasData) => {
   let { width, height } = canvasData.imgs[0];
   let [innerWidth, innerHeight] = [window.innerWidth, window.innerHeight];
-  let deviceRatio = innerHeight / innerWidth;
-  let imgRatio = height / width;
-  let heightRatio = window.innerHeight / height;
-  let widthRatio = window.innerWidth / width;
+  let deviceRatio = (innerHeight / innerWidth).toFixed(4);
+  let imgRatio = (height / width).toFixed(4);
+  let heightRatio = (window.innerHeight / height).toFixed(4);
+  let widthRatio = (window.innerWidth / width).toFixed(4);
 
   let [colTransX, colTransY] = [
     // scale()의 경우 px 이동 또한 scale로 곱해버린다!!!!!!!!!!
-    (-width + innerWidth) / 2 / heightRatio,
-    (-height + innerHeight) / 2 / heightRatio,
+    ((-width + innerWidth) / 2 / heightRatio).toFixed(4),
+    ((-height + innerHeight) / 2 / heightRatio).toFixed(4),
   ];
   let [verTransX, verTransY] = [
     // scale()의 경우 px 이동 또한 scale로 곱해버린다!!!!!!!!!
-    (-width + innerWidth) / 2 / widthRatio,
-    (-height + innerHeight) / 2 / widthRatio,
+    ((-width + innerWidth) / 2 / widthRatio).toFixed(4),
+    ((-height + innerHeight) / 2 / widthRatio).toFixed(4),
     ,
   ];
 
