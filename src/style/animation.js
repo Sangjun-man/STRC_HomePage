@@ -60,18 +60,22 @@ export const playAnimation = (sceneInfo, layoutData) => {
       // console.log(sr);
 
       if (window.innerWidth < 768) {
-        objs.gradient.style.top = `${
-          80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
-        }%`;
+        if (onAirCheck(sr, values.gradient, true)) {
+          objs.gradient.style.top = `${
+            80 - calcCssValues(sceneInfo, layoutData, values.gradient) * 50
+          }%`;
+        }
       } else {
-        objs.gradient.style.left = `${
-          -50 + calcCssValues(sceneInfo, layoutData, values.gradient) * 50
-        }%`;
-        objs.leftLine.style.opacity = calcCssValues(
-          sceneInfo,
-          layoutData,
-          values.leftLine
-        );
+        if (onAirCheck(sr, values.gradient, true)) {
+          objs.gradient.style.left = `${
+            -50 + calcCssValues(sceneInfo, layoutData, values.gradient) * 50
+          }%`;
+          objs.leftLine.style.opacity = calcCssValues(
+            sceneInfo,
+            layoutData,
+            values.leftLine
+          );
+        }
       }
       objs.paragraph.style.opacity = calcCssValues(
         sceneInfo,
@@ -79,16 +83,18 @@ export const playAnimation = (sceneInfo, layoutData) => {
         values.paragraph
       );
 
-      let blur = `blur(${calcCssValues(
-        sceneInfo,
-        layoutData,
-        values.canvasBlurry
-      )}px)`;
-      objs.leftLine.style.filter = blur;
-      objs.gradient.style.filter = blur;
-      objs.paragraph.style.filter = blur;
+      if (onAirCheck(sr, values.gradient, true)) {
+        let blur = `blur(${calcCssValues(
+          sceneInfo,
+          layoutData,
+          values.canvasBlurry
+        )}px)`;
+        objs.leftLine.style.filter = blur;
+        objs.gradient.style.filter = blur;
+        objs.paragraph.style.filter = blur;
 
-      canvas.style.filter = blur;
+        canvas.style.filter = blur;
+      }
       break;
     case 3:
       canvas.style.filter = "";
@@ -195,6 +201,7 @@ const onAirCheck = (sr, value = [0, 0, { start: 0, end: 0 }], stretch) => {
     if (sr < value[2].start - 0.1) {
       return false;
     } else if (value[2].start - 0.1 < sr && sr < value[2].end + 0.1) {
+      // console.log(sr);
       return true;
     } else {
       return false;

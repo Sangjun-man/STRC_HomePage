@@ -21,7 +21,7 @@ export const logoInfo = {
 export const sceneInfo = [
   {
     type: "0",
-    heightNum: 5,
+    heightNum: 3,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-0"),
