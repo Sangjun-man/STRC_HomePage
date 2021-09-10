@@ -83,7 +83,7 @@ const Mobilemain = () => {
   });
   window.addEventListener("scroll", () => {
     layoutData.yOffset = window.pageYOffset;
-    console.log(window.pageYOffset);
+    // console.log(window.pageYOffset);
     currentSceneCheck(sceneInfo, layoutData); //현재 반영 씬 체크
     playAnimation(sceneInfo, layoutData);
     logoControl(logoInfo, layoutData);
@@ -91,27 +91,27 @@ const Mobilemain = () => {
   });
 };
 
-// function isMobile() {
-//   var UserAgent = navigator.userAgent;
+function isMobile() {
+  var UserAgent = navigator.userAgent;
 
-//   if (
-//     UserAgent.match(
-//       /iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i
-//     ) != null ||
-//     UserAgent.match(/LG|SAMSUNG|Samsung/) != null
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
+  if (
+    UserAgent.match(
+      /iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i
+    ) != null ||
+    UserAgent.match(/LG|SAMSUNG|Samsung/) != null
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 setImgToCanvas(canvasData, BGimgSrcArr);
 setCanvasLayout(canvasData);
-// if (isMobile()) {
-//   Mobilemain();
-// } else {
-//   main();
-// }
+if (isMobile()) {
+  Mobilemain();
+} else {
+  main();
+}
 
 main();
