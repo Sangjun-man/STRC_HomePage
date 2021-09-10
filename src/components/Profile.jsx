@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import kakao from "../asset/svg/Contact_KakaoIcon.svg";
 import instagram from "../asset/svg/Contact_InstaIcon.svg";
@@ -176,7 +176,7 @@ const Link = ({ text, icon, href }) => {
   );
 };
 
-const Profile = (props) => {
+const Profile = forwardRef((props, ref) => {
   const [innerWidth, setInnerWidth] = useState();
   const [innerHeight, setInnerHeight] = useState();
   useEffect(() => {
@@ -222,6 +222,7 @@ const Profile = (props) => {
   return (
     <>
       <StyledContainer
+        ref={ref}
         left={profileData.left}
         top={profileData.top}
         width={profileData.width}
@@ -237,6 +238,6 @@ const Profile = (props) => {
       </StyledContainer>
     </>
   );
-};
+});
 
 export default Profile;

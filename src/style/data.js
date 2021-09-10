@@ -119,7 +119,7 @@ export const sceneInfo = [
   },
   {
     type: "5",
-    heightNum: 8,
+    heightNum: 16,
     scrollHeight: 0,
     objs: {
       scene: document.querySelector("#scene-5"),
@@ -136,6 +136,7 @@ export const sceneInfo = [
         window.innerHeight - 364,
         { start: 0.5, end: 0.6 },
       ],
+      profile: [1, 0, { start: 0.7, end: 0.9 }],
     },
   },
   {

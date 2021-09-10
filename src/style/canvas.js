@@ -327,7 +327,6 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
               // dWidth: width,
               // dHeight: partScrollRatio * height,
             };
-            console.log(rv);
             return rv;
           } //전체 씬의 스크롤ratio를 반영해서 적용,
         }
@@ -362,7 +361,7 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
               dHeight: height,
               partScrollRatio: partScrollRatio,
             };
-            console.log(rv);
+            // console.log(rv);
 
             return rv;
           }
@@ -371,12 +370,12 @@ export const calcCanvasValues = (imageData, sceneInfo, layoutData, values) => {
     }
   } else if (yOfCurrent < partScrollStart) {
     //시작점 안지났으면
-    console.log(rv);
+    // console.log(rv);
 
     return rv;
   } else if (yOfCurrent > partScrollEnd) {
     //end 지났으면
-    console.log(rv);
+    // console.log(rv);
 
     return rv;
   }

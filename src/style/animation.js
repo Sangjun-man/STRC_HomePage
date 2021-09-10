@@ -176,6 +176,11 @@ export const playAnimation = (sceneInfo, layoutData) => {
           values.typo2Web
         )}px`;
       }
+      objs.profile.style.opacity = calcCssValues(
+        sceneInfo,
+        layoutData,
+        values.profile
+      );
       // console.log("5");
       break;
     case 6:
@@ -186,12 +191,10 @@ export const playAnimation = (sceneInfo, layoutData) => {
 };
 
 const onAirCheck = (sr, value = [0, 0, { start: 0, end: 0 }], stretch) => {
-  console.log(stretch);
   if (stretch == true) {
     if (sr < value[2].start - 0.1) {
       return false;
     } else if (value[2].start - 0.1 < sr && sr < value[2].end + 0.1) {
-      console.log(sr);
       return true;
     } else {
       return false;
